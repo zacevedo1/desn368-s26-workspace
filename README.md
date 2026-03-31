@@ -56,10 +56,10 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 ## 🛠️ **My Toolkit**
 *Update these links as you complete each tool setup:*
 - **GitHub Profile:**  ⏳
-- **Workspace Repository:** [Add your repository URL here] ⏳
+- **Workspace Repository:** [(https://github.com/zacevedo1/desn368-s26-workspace)] 
 - **Figma:** [@zahara6] 
 - **CodePen:** [(https://codepen.io/zacevedo1)] 
-- **GitHub Student Pack:** [Confirm approval status here] ⏳
+- **GitHub Student Pack:** [Pending] 
 
 ### **How to Update Your Toolkit:**
 1. **Click the pencil icon** (✏️) at the top right of this README
