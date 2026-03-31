@@ -76,7 +76,7 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 ## 🎯 **Course Progress**
 *Check off assignments as you complete them:*
 
-- [ ] **Week 1:** S3tup & 0nb04rd1ng
+- [x] **Week 1:** S3tup & 0nb04rd1ng
 - [ ] **Week 2:** Th3 F1r5t T4g
 - [ ] **Week 3:** D0cum3nt 4rch1t3ctur3
 - [ ] **Week 4:** Th3 C4sc4d3 B3g1n5
