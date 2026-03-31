@@ -1,0 +1,160 @@
+name: "\U0001F680 Create Onboarding Issues"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for existing onboarding issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'onboarding',
+              state: 'all'
+            });
+            if (existing.data.length > 0) {
+              core.setFailed('Onboarding issues already exist. This workflow should only be run once.');
+            }
+
+      - name: Create labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: 'onboarding', color: '0E8A16', description: 'Onboarding setup task' },
+              { name: 'setup', color: '1D76DB', description: 'Tool setup task' },
+              { name: 'verification', color: 'FBCA04', description: 'Verification checkpoint' }
+            ];
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ...label
+                });
+              } catch (e) {
+                if (e.status !== 422) throw e;
+              }
+            }
+
+      - name: Create onboarding issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = [
+              {
+                title: 'Step 1: Personalize Your Workspace',
+                labels: ['onboarding', 'setup'],
+                body: `## Personalize Your Workspace
+
+            You've already created your repo from the template — nice work! Now it's time to make it yours.
+
+            ### Tasks
+            - [ ] In your repo, edit \`README.md\`
+            - [ ] Update the **My Toolkit** section with your GitHub profile link
+            - [ ] Commit your changes
+
+            ---
+            > Close this issue when you're done!`
+              },
+              {
+                title: 'Step 2: Figma Education Setup',
+                labels: ['onboarding', 'setup'],
+                body: `## Figma Education Setup
+
+            Get access to Figma's full education plan and join the course team.
+
+            ### Tasks
+            - [ ] Apply for Figma Education at [figma.com/education/apply](https://www.figma.com/education/apply) using your **@ewu.edu** email
+            - [ ] Upload your **EWU student ID** and **EagleNet screenshot** as verification
+            - [ ] Join the course Figma team: [Figma Team Invite](https://www.figma.com/team_invite/redeem/x4YhkxdsvcOhUte2KX7Zwm?t=MxznjhsFuM43uNyb-21)
+            - [ ] Update your \`README.md\` **My Toolkit** section with your Figma username
+
+            ### Why this matters
+            Figma is where all design work happens in this course. The Education plan gives you unlimited files and access to professional features.
+
+            ---
+            > Close this issue when you're done!`
+              },
+              {
+                title: 'Step 3: CodePen Setup',
+                labels: ['onboarding', 'setup'],
+                body: `## CodePen Setup
+
+            Create your CodePen account for in-class coding exercises.
+
+            ### Tasks
+            - [ ] Create an account at [codepen.io](https://codepen.io/accounts/signup)
+            - [ ] Choose a **professional username**
+            - [ ] Add a **profile photo** and **bio** ("Web Design Student at EWU")
+            - [ ] Copy your profile URL: \`https://codepen.io/YourUsername\`
+            - [ ] Update your \`README.md\` **My Toolkit** section with your CodePen link
+
+            ---
+            > Close this issue when you're done!`
+              },
+              {
+                title: 'Step 4: GitHub Student Developer Pack',
+                labels: ['onboarding', 'setup'],
+                body: `## GitHub Student Developer Pack
+
+            Apply for free developer tools through GitHub Education.
+
+            ### Tasks
+            - [ ] Go to [education.github.com/pack](https://education.github.com/pack)
+            - [ ] Click **Get your pack**
+            - [ ] Apply with your **@ewu.edu** email
+            - [ ] Upload proof of enrollment (same documents you used for Figma)
+            - [ ] Update your \`README.md\` **My Toolkit** section with your approval status
+
+            ### Note
+            Approval can take a few days. You can continue with other setup steps while you wait.
+
+            ---
+            > Close this issue once you've been approved!`
+              },
+              {
+                title: 'Step 5: Complete Setup Verification',
+                labels: ['onboarding', 'verification'],
+                body: `## Complete Setup Verification
+
+            Final check — make sure everything is connected and your workspace is complete.
+
+            ### Tasks
+            - [ ] Open your repo's \`README.md\` and confirm **My Toolkit** has:
+              - [ ] GitHub profile link
+              - [ ] Repo URL
+              - [ ] Figma username
+              - [ ] CodePen URL
+              - [ ] LiveCode profile link
+              - [ ] GitHub Student Pack status
+            - [ ] Submit your repo link in **Canvas**
+
+            ### LiveCode
+            If you haven't set up your LiveCode profile yet, do so now and add the link to your README.
+
+            ### You're done!
+            Once everything is filled in and submitted, close this issue. Your professional workspace is ready for the quarter.
+
+            ---
+            > Close this issue when you're done!`
+              }
+            ];
+
+            for (const issue of issues) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issue.title,
+                body: issue.body,
+                labels: issue.labels
+              });
+            }
