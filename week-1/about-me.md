@@ -32,9 +32,9 @@
 ## Designer-Coder Mindset
 
 **5. When you see a website, you primarily notice:**  
-[X] Visual design  
+[ ] Visual design  
 [ ] How it functions  
-[ ] Both equally  
+[X] Both equally  
 [ ] Other: _______________
 
 **6. Rate your comfort level (1-5 scale, 5 = very comfortable):**  
