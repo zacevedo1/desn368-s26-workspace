@@ -1,4 +1,7 @@
 /* System Font Stack for readability */
+* {
+    background-color:deepskyblue;
+}
 body {
     font-family:  Arial;
     line-height: 1.6;
