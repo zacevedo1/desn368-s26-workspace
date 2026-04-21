@@ -1,0 +1,174 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #f9f7f4 0%, #e8dcc8 100%);
+}
+
+/* Center content container */
+main {
+  max-width: 800px; /* change this at will */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Header Styles */
+header {
+  text-align: center;
+  border-bottom: 3px solid #d4a574;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 3em;
+  color: #8b5a3c;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Recipe Image */
+#recipe-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  clip-path: inset(0 0 80px 0);
+  padding: 40px;
+  background-color: #f5f1ed;
+}
+
+/* Section Styles */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 1.8em;
+  color: #a0704d;
+  border-bottom: 2px solid #d4a574;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Description Section */
+#Item-description {
+  font-style: italic;
+  color: #666;
+  padding: 20px;
+  background-color: #f5f1ed;
+  border-left: 5px solid #d4a574;
+  border-radius: 4px;
+  margin-top: -80px
+}
+
+/* Ingredients List */
+#Ingredients-List ul {
+  list-style-position: inside;
+  margin-left: 20px;
+}
+
+#Ingredients-List li {
+  margin: 12px 0;
+  padding-left: 10px;
+}
+
+#Ingredients-List strong {
+  color: #a0704d;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* Tips and Variations List */
+.Tips-variation-list {
+  list-style-position: inside;
+  margin-left: 20px;
+  background-color: #fafafa;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+/* Instructions List */
+#Step-by-step-instructions ol {
+  list-style-position: inside;
+  margin-left: 20px;
+}
+
+#Step-by-step-instructions li {
+  margin: 15px 0;
+  padding-left: 10px;
+  line-height: 1.8;
+}
+
+#Step-by-step-instructions em {
+  color: #d4a574;
+  font-weight: bold;
+}
+
+/* Footer Styles */
+footer {
+  border-top: 3px solid #d4a574;
+  padding-top: 30px;
+  margin-top: 40px;
+  text-align: center;
+  color: #666;
+}
+
+footer p {
+  margin: 15px 0;
+  font-size: 0.95em;
+}
+
+footer a {
+  color: #8b5a3c;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #d4a574;
+  text-decoration: underline;
+}
+
+/* Links */
+a {
+  color: #8b5a3c;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #d4a574;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  section h2 {
+    font-size: 1.4em;
+  }
+
+  main {
+    padding: 20px 15px;
+  }
+}
+.Tips-variation-list {
+  margin: 15px 0;
+  padding-left: 45px;
+  line-height: 1.8;
+}
