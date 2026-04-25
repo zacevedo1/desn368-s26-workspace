@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4: Developer Tools Practice - Box Model &amp; Colors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Progress Tracker */
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .progress-container h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Setup Instructions */
+        .setup-section {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e17055;
+        }
+
+        .setup-section h2 {
+            color: #2d3436;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .workflow {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 2px solid #fdcb6e;
+        }
+
+        .workflow h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .workflow ol {
+            margin-left: 20px;
+        }
+
+        .workflow li {
+            margin-bottom: 10px;
+            color: #2d3436;
+        }
+
+        .workflow p {
+            color: #2d3436;
+        }
+
+        .important-note {
+            background-color: #fab1a0;
+            border-left: 5px solid #e17055;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .important-note strong {
+            color: #d63031;
+        }
+
+        .important-note p {
+            margin: 5px 0;
+            color: #2d3436;
+        }
+
+        /* Keyboard Shortcuts */
+        .keyboard-shortcut {
+            display: inline-block;
+            background: #2d3436;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            border: 2px solid #636e72;
+            margin: 0 3px;
+        }
+
+        /* Main Sections */
+        section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        section:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .section-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Exercise Boxes */
+        .exercise {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            border: 2px solid #b8c6db;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .exercise:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .exercise h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            margin-top: 0;
+        }
+
+        .exercise.completed {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: #66bb6a;
+        }
+
+        .completion-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Answer Boxes */
+        .answer-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .answer-box label {
+            display: block;
+            margin: 15px 0 8px 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .answer-box input,
+        .answer-box textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .answer-box input:focus,
+        .answer-box textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .answer-box textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .check-answer-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .check-answer-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .check-answer-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        /* Color Boxes */
+        .color-boxes {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-box {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .box-1 { background-color: #FF6B6B; }
+        .box-2 { background-color: #4ECDC4; }
+        .box-3 { background-color: #45B7D1; }
+        .box-4 { background-color: #96CEB4; }
+        .box-5 { background-color: #FFEAA7; color: #333; text-shadow: none; }
+
+        /* Practice Boxes */
+        .practice-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 3px dashed #667eea;
+            text-align: center;
+            font-size: 1.2em;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .gradient-example {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+
+        footer h2 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            section h2 {
+                font-size: 1.4em;
+            }
+
+            .color-boxes {
+                justify-content: center;
+            }
+
+            .color-box {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Week 4: Developer Tools Practice</h1>
+            <p class="subtitle">Box Model &amp; Colors</p>
+            <div class="week-badge">Interactive Learning Exercise</div>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="progress-container">
+            <h3>Your Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 100%;">100%</div>
+            </div>
+            <p style="margin-top: 10px; font-size: 1.1em; color: #666;">
+                <span id="completedTasks">11</span> / 11 Tasks Completed
+            </p>
+        </div>
+
+        <!-- Setup Instructions -->
+        <div class="setup-section">
+            <h2>🔧 Before You Start - Important Setup!</h2>
+            
+            <div class="workflow">
+                <h3>Recommended Workflow for This Exercise:</h3>
+                <ol>
+                    <li><strong>Download this file</strong> to your computer (if you haven't already)</li>
+                    <li><strong>Open it in Firefox</strong> browser</li>
+                    <li><strong>Open Firefox Developer Tools:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>Windows/Linux: Press <span class="keyboard-shortcut">F12</span> or <span class="keyboard-shortcut">Ctrl</span> + <span class="keyboard-shortcut">Shift</span> + <span class="keyboard-shortcut">I</span></li>
+                            <li>Mac: Press <span class="keyboard-shortcut">Fn</span> + <span class="keyboard-shortcut">F12</span> or <span class="keyboard-shortcut">Cmd</span> + <span class="keyboard-shortcut">Option</span> + <span class="keyboard-shortcut">I</span></li>
+                        </ul>
+                    </li>
+                    <li><strong>Split your screen:</strong> Keep DevTools open on one side while you work through exercises</li>
+                    <li><strong>Type your answers</strong> in the text boxes as you complete each task</li>
+                    <li><strong>Click "Check Answer"</strong> after completing each exercise section</li>
+                    <li><strong>When finished, click the green "Download Completed File" button</strong> at the bottom to save your work!</li>
+                </ol>
+                
+                <p style="margin-top: 15px; font-style: italic;">
+                    💡 Pro tip: This exercise is designed to be hands-on. You'll learn by doing!
+                </p>
+            </div>
+
+            <div class="important-note">
+                <p><strong>⚠️ IMPORTANT:</strong></p>
+                <p>• Your answers save automatically as you type (as a backup)</p>
+                <p>• After completing all tasks, use the <strong>Download button</strong> at the bottom to save your completed file</p>
+                <p>• Submit the downloaded file to Canvas for grading</p>
+            </div>
+        </div>
+
+        <!-- Task 1: Opening Developer Tools -->
+        <section>
+            <h2><span class="section-number">1</span> Opening Developer Tools</h2>
+            
+            <div class="exercise completed" data-task="1">
+                <h3>Let's Start!</h3>
+                <p>First, open the Firefox Developer Tools using one of these methods:</p>
+                <ul>
+                    <li>Press <span class="keyboard-shortcut">F12</span> (Windows/Linux) or <span class="keyboard-shortcut">Fn</span> + <span class="keyboard-shortcut">F12</span> (Mac)</li>
+                    <li>Right-click anywhere on this page → Select "Inspect Element"</li>
+                    <li>Click the Firefox menu (≡) → More Tools → Web Developer Tools</li>
+                </ul>
+
+                <div class="answer-box">
+                    <label>Which method did you use to open Developer Tools?</label>
+                    <input type="text" placeholder="Type your answer here (e.g., 'I pressed F12')">
+                    
+                    <label>What tabs do you see in the Developer Tools? (List at least 3)</label>
+                    <textarea placeholder="List the tabs you see..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(1)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 2: Inspector Tab -->
+        <section>
+            <h2><span class="section-number">2</span> Using the Inspector Tab</h2>
+            
+            <div class="exercise completed" data-task="2">
+                <h3>Explore the Inspector</h3>
+                <p>The Inspector tab shows you the HTML structure of the page. Let's practice!</p>
+                
+                <ol>
+                    <li>Make sure the <strong>Inspector</strong> tab is selected in DevTools</li>
+                    <li>Click the "Pick an element" button (looks like a cursor arrow) or press <span class="keyboard-shortcut">Ctrl</span> + <span class="keyboard-shortcut">Shift</span> + <span class="keyboard-shortcut">C</span></li>
+                    <li>Hover over the purple header at the top of this page</li>
+                    <li>Click on it to inspect it</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What HTML element is the header? (Look at the tag name in the Inspector)</label>
+                    <input type="text" placeholder="e.g., &lt;div&gt;, &lt;header&gt;, &lt;section&gt;, etc.">
+                    
+                    <label>What happens when you hover over elements with the inspector tool?</label>
+                    <textarea placeholder="Describe what you see..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(2)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 3: The Box Model -->
+        <section>
+            <h2><span class="section-number">3</span> Understanding the Box Model</h2>
+            
+            <p>Every element on a web page is a box! The CSS Box Model has four main parts:</p>
+            <ul>
+                <li><strong>Content:</strong> The actual content (text, images, etc.)</li>
+                <li><strong>Padding:</strong> Space around the content, inside the border</li>
+                <li><strong>Border:</strong> A line around the padding</li>
+                <li><strong>Margin:</strong> Space outside the border, between elements</li>
+            </ul>
+
+            <div class="practice-box">
+                Inspect this box! 🔍
+                <br>Look at its padding, border, and margin in DevTools
+            </div>
+
+            <div class="exercise completed" data-task="3">
+                <h3>Practice: Inspecting the Box Model</h3>
+                <ol>
+                    <li>Use the Inspector tool to click on the box above that says "Inspect this box!"</li>
+                    <li>In the Inspector panel, look for the Box Model diagram (usually on the right side)</li>
+                    <li>The Box Model shows the dimensions of the element in colored sections</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What is the padding of the box? (Look at the green/light green area in the Box Model)</label>
+                    <input type="text" placeholder="e.g., 30px">
+                    
+                    <label>What color is used to show margin in the Box Model diagram?</label>
+                    <input type="text" placeholder="What color?">
+                    
+                    <label>In your own words, what's the difference between padding and margin?</label>
+                    <textarea placeholder="Explain the difference..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(3)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 4: Changing Border -->
+        <section>
+            <h2><span class="section-number">4</span> Experimenting with Border</h2>
+            
+            <div class="practice-box" id="borderBox">
+                Change my border! 🎨
+            </div>
+
+            <div class="exercise completed" data-task="4">
+                <h3>Live Editing: Border Properties</h3>
+                <ol>
+                    <li>Inspect the box above</li>
+                    <li>In the Inspector's CSS rules panel (right side), find the border property</li>
+                    <li>Click on the border value and try changing it to different values like:
+                        <ul>
+                            <li><code>5px solid red</code></li>
+                            <li><code>10px dotted blue</code></li>
+                            <li><code>3px double green</code></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What was the original border style? (Look before you change it)</label>
+                    <input type="text" placeholder="e.g., 3px dashed #667eea">
+                    
+                    <label>Try making the border 8px solid red. Does it change immediately?</label>
+                    <input type="text" placeholder="Yes or No?">
+                    
+                    <label>What's your favorite border style? Why?</label>
+                    <textarea placeholder="Describe your favorite style..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(4)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 5: Padding Experiment -->
+        <section>
+            <h2><span class="section-number">5</span> Playing with Padding</h2>
+            
+            <div class="practice-box" id="paddingBox" style="padding: 5px;">
+                Adjust my padding! 📏
+            </div>
+
+            <div class="exercise completed" data-task="5">
+                <h3>Understanding Padding</h3>
+                <ol>
+                    <li>Inspect the box above</li>
+                    <li>Find the <code>padding</code> property in the CSS panel</li>
+                    <li>Try changing the padding to different values (e.g., 50px, 5px, 100px)</li>
+                    <li>Watch how the box grows or shrinks!</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What happens to the box when you increase the padding?</label>
+                    <textarea placeholder="Describe what happens..."></textarea>
+                    
+                    <label>What happens when you decrease the padding to 5px?</label>
+                    <textarea placeholder="Describe what happens..."></textarea>
+                    
+                    <label>Does padding affect the space INSIDE or OUTSIDE the border?</label>
+                    <input type="text" placeholder="Inside or Outside?">
+
+                    <button class="check-answer-btn" onclick="checkTask(5)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 6: Margin Magic -->
+        <section>
+            <h2><span class="section-number">6</span> Margin Magic</h2>
+            
+            <div class="practice-box" id="marginBox" style="margin: -20px auto;">
+                Play with my margin! 🎪
+            </div>
+
+            <div class="exercise completed" data-task="6">
+                <h3>Exploring Margins</h3>
+                <ol>
+                    <li>Inspect the box above</li>
+                    <li>Find the <code>margin</code> property</li>
+                    <li>Try these experiments:
+                        <ul>
+                            <li>Change margin to <code>0</code></li>
+                            <li>Change margin to <code>50px</code></li>
+                            <li>Try negative margin like <code>-20px</code></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What happens when you set margin to 0?</label>
+                    <textarea placeholder="Describe the change..."></textarea>
+                    
+                    <label>What happens with negative margin (-20px)?</label>
+                    <textarea placeholder="What's different?"></textarea>
+                    
+                    <label>How is margin different from padding?</label>
+                    <textarea placeholder="Explain the difference..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(6)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 7: Color Exploration -->
+        <section>
+            <h2><span class="section-number">7</span> Working with Colors</h2>
+            
+            <p>CSS supports multiple ways to write colors!</p>
+
+            <div class="color-boxes">
+                <div class="color-box box-1">Red Box</div>
+                <div class="color-box box-2">Teal Box</div>
+                <div class="color-box box-3">Blue Box</div>
+                <div class="color-box box-4">Green Box</div>
+                <div class="color-box box-5">Yellow Box</div>
+            </div>
+
+            <div class="exercise completed" data-task="7">
+                <h3>Inspect Colors</h3>
+                <ol>
+                    <li>Inspect each colored box above</li>
+                    <li>Look at the <code>background-color</code> property for each box</li>
+                    <li>Notice they all use HEX color codes (start with #)</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What is the HEX code for the Red Box?</label>
+                    <input type="text" placeholder="e.g., #FF6B6B">
+                    
+                    <label>What is the HEX code for the Teal Box?</label>
+                    <input type="text" placeholder="e.g., #4ECDC4">
+                    
+                    <label>Click on any HEX color code in DevTools. What happens?</label>
+                    <textarea placeholder="Describe what you see..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(7)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 8: Color Formats -->
+        <section>
+            <h2><span class="section-number">8</span> Different Color Formats</h2>
+            
+            <div class="exercise completed" data-task="8">
+                <h3>Changing Color Formats</h3>
+                <p>CSS supports several color formats:</p>
+                <ul>
+                    <li><strong>Named colors:</strong> <code>red</code>, <code>blue</code>, <code>coral</code></li>
+                    <li><strong>HEX:</strong> <code>#FF6B6B</code></li>
+                    <li><strong>RGB:</strong> <code>rgb(255, 107, 107)</code></li>
+                    <li><strong>HSL:</strong> <code>hsl(0, 100%, 71%)</code></li>
+                </ul>
+
+                <ol>
+                    <li>Inspect the Red Box from the previous section</li>
+                    <li>Click on the color swatch (colored square) next to the HEX code</li>
+                    <li>A color picker will appear</li>
+                    <li>At the top of the color picker, you can switch between formats</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>Convert the Red Box's HEX color to RGB. What is it?</label>
+                    <input type="text" placeholder="rgb(?, ?, ?)">
+                    
+                    <label>Now convert it to HSL. What is it?</label>
+                    <input type="text" placeholder="hsl(?, ?, ?)">
+                    
+                    <label>Which color format do you find easiest to understand?</label>
+                    <textarea placeholder="Which format and why?"></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(8)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 9: Background Gradients -->
+        <section>
+            <h2><span class="section-number">9</span> Gradients</h2>
+            
+            <div class="gradient-example"></div>
+
+            <div class="exercise completed" data-task="9">
+                <h3>Inspecting Gradients</h3>
+                <ol>
+                    <li>Inspect the purple gradient box above</li>
+                    <li>Find the <code>background</code> property</li>
+                    <li>Notice it uses <code>linear-gradient()</code></li>
+                    <li>Try changing the colors or the angle!</li>
+                </ol>
+
+                <div class="answer-box">
+                    <label>What are the two colors in the gradient?</label>
+                    <input type="text" placeholder="First color and second color">
+                    
+                    <label>What angle is the gradient? (Hint: look for the number before 'deg')</label>
+                    <input type="text" placeholder="e.g., 135deg">
+                    
+                    <label>Try changing one of the gradient colors. What color did you choose?</label>
+                    <textarea placeholder="What did you change it to?"></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(9)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 10: Live Experimentation -->
+        <section>
+            <h2><span class="section-number">10</span> Create Your Own Style</h2>
+            
+            <div class="practice-box" id="experimentBox">
+                Style me however you want! 🎨
+            </div>
+
+            <div class="exercise completed" data-task="10">
+                <h3>Creative Challenge!</h3>
+                <p>Use DevTools to change the box above. Try to change:</p>
+                <ul>
+                    <li>Background color</li>
+                    <li>Border style and color</li>
+                    <li>Padding</li>
+                    <li>Margin</li>
+                    <li>Text color</li>
+                </ul>
+
+                <div class="answer-box">
+                    <label>What background color did you choose?</label>
+                    <input type="text" placeholder="Color name, HEX, RGB, or HSL">
+                    
+                    <label>What border style did you create?</label>
+                    <input type="text" placeholder="e.g., 5px solid blue">
+                    
+                    <label>Describe your final design:</label>
+                    <textarea placeholder="Describe what you created..."></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(10)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Task 11: Reflection -->
+        <section>
+            <h2><span class="section-number">📝</span> Reflection Questions</h2>
+            
+            <div class="exercise completed" data-task="11">
+                <h3>Think About What You Learned</h3>
+                <div class="answer-box">
+                    <label>1. In your own words, explain the box model:</label>
+                    <textarea placeholder="Your explanation"></textarea>
+                    
+                    <label>2. What's your favorite way to write colors? Why?</label>
+                    <textarea placeholder="Your preference and why"></textarea>
+                    
+                    <label>3. How do you think Developer Tools will help you as you learn web design?</label>
+                    <textarea placeholder="How will DevTools help you?"></textarea>
+                    
+                    <label>4. What questions do you still have?</label>
+                    <textarea placeholder="Your questions"></textarea>
+
+                    <button class="check-answer-btn" onclick="checkTask(11)" style="background: rgb(40, 167, 69);" disabled="">✓ Task Complete</button>
+                </div>
+            <div class="completion-badge">✓ Completed</div></div>
+        </section>
+
+        <!-- Completion Certificate -->
+        <section id="completion-certificate" style="background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)); border: medium; color: white; display: block;">
+            <div style="text-align: center; padding: 20px;">
+                <h2 style="color: white; font-size: 2.5em; margin-bottom: 20px;">🎓 Certificate of Completion</h2>
+                <p style="font-size: 1.3em; margin-bottom: 30px;">Firefox Developer Tools Practice - Week 4</p>
+                
+                <div style="background: rgba(255,255,255,0.95); color: #333; padding: 30px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #667eea; margin-top: 0;">Student Progress Summary</h3>
+                    
+                    <div style="margin: 30px 0;">
+                        <div style="background: #f0f0f0; border-radius: 15px; padding: 15px; margin-bottom: 20px;">
+                            <h4 style="color: #333; margin-top: 0;">Progress</h4>
+                            <div class="progress-bar" style="background: #e0e0e0;">
+                                <div class="progress-fill" id="finalProgressBar" style="background: linear-gradient(90deg, rgb(102, 126, 234), rgb(118, 75, 162)); width: 100%;">100%</div>
+                            </div>
+                            <p style="margin-top: 10px; font-size: 1.2em; font-weight: bold; color: #28a745;">
+                                <span id="finalCompletedTasks">11</span> / 11 Tasks Completed ✓
+                            </p>
+                        </div>
+
+                        <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                            <h4 style="color: #667eea; margin-bottom: 15px;">Skills Mastered:</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 10px; margin: 5px 0; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745;">✓ Understanding the CSS Box Model</li>
+                                <li style="padding: 10px; margin: 5px 0; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745;">✓ Inspecting Border, Padding, and Margin</li>
+                                <li style="padding: 10px; margin: 5px 0; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745;">✓ Working with Color Formats (Named, Hex, RGB, HSL)</li>
+                                <li style="padding: 10px; margin: 5px 0; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745;">✓ Using Firefox Developer Tools Inspector</li>
+                                <li style="padding: 10px; margin: 5px 0; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745;">✓ Live CSS Editing and Experimentation</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border: 2px dashed #ffc107;">
+                            <p style="color: #856404; font-size: 1.1em; margin: 0;">
+                                <strong>📸 For Submission:</strong> Don't forget to download your completed file using the button below!
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                            <p style="margin: 5px 0;">Date Completed: <span id="completionDate">Saturday, April 25, 2026</span></p>
+                            <p style="margin: 5px 0;">Course: DESN368 Web Design 1 - Week 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Save Progress Section -->
+        <section style="background: linear-gradient(135deg, #28a745, #20c997); border: none; color: white;">
+            <div style="text-align: center; padding: 20px;">
+                <h2 style="color: white; margin-top: 0;">💾 Save Your Work</h2>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">
+                    Click the button below to download a copy of this file with all your answers saved!
+                </p>
+                <button id="saveWorkBtn" style="background: white; color: rgb(40, 167, 69); border: medium; padding: 15px 40px; font-size: 1.2em; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px; transform: scale(1.05);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    📥 Download Completed File
+                </button>
+                <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
+                    This will save a new HTML file with all your answers embedded. You can open it anytime or submit it to Canvas!
+                </p>
+                <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.8; font-style: italic;">
+                    💡 The downloaded file will be named: week4-devtools-completed-YYYY-MM-DD.html
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <h2>🎉 Congratulations!</h2>
+            <p>You're mastering Browser Developer Tools!</p>
+            <p>Keep practicing and exploring. The more you use DevTools, the better you'll become at web development!</p>
+        </footer>
+    </div>
+
+    <script id="data-restore-script">
+// THIS SCRIPT RESTORES YOUR SAVED ANSWERS WHEN YOU OPEN THIS FILE
+(function() {
+    console.log('🔄 Restoring saved work...');
+    
+    // Embedded student data
+    const SAVED_DATA = {
+  "answers": [
+    {
+      "index": 0,
+      "value": "cmd+opt+I",
+      "type": "input"
+    },
+    {
+      "index": 1,
+      "value": "Inspector, Console, and Debugger",
+      "type": "textarea"
+    },
+    {
+      "index": 2,
+      "value": "<h1>",
+      "type": "input"
+    },
+    {
+      "index": 3,
+      "value": "they highlight",
+      "type": "textarea"
+    },
+    {
+      "index": 4,
+      "value": "30px",
+      "type": "input"
+    },
+    {
+      "index": 5,
+      "value": "yellow",
+      "type": "input"
+    },
+    {
+      "index": 6,
+      "value": "padding is the inner space of the content while the margin is the outer space of the content",
+      "type": "textarea"
+    },
+    {
+      "index": 7,
+      "value": "3px dashed #667eea",
+      "type": "input"
+    },
+    {
+      "index": 8,
+      "value": "yes",
+      "type": "input"
+    },
+    {
+      "index": 9,
+      "value": "double because it looks cool",
+      "type": "textarea"
+    },
+    {
+      "index": 10,
+      "value": "the space around the content inside the box gets bigger",
+      "type": "textarea"
+    },
+    {
+      "index": 11,
+      "value": "it gets really small, a lot tighter",
+      "type": "textarea"
+    },
+    {
+      "index": 12,
+      "value": "inside",
+      "type": "input"
+    },
+    {
+      "index": 13,
+      "value": "there's no space between the box bellow it",
+      "type": "textarea"
+    },
+    {
+      "index": 14,
+      "value": "the box under it begins to overlap with the box im messing with",
+      "type": "textarea"
+    },
+    {
+      "index": 15,
+      "value": "margin is the outer spacing of the box so spacing between other elements, while padding is the spacing of the content within the box.",
+      "type": "textarea"
+    },
+    {
+      "index": 16,
+      "value": "#FF6B6B",
+      "type": "input"
+    },
+    {
+      "index": 17,
+      "value": "#4ECDC4",
+      "type": "input"
+    },
+    {
+      "index": 18,
+      "value": "you can change it",
+      "type": "textarea"
+    },
+    {
+      "index": 19,
+      "value": "RGB(255, 107, 107)",
+      "type": "input"
+    },
+    {
+      "index": 20,
+      "value": "HSL(0, 100%, 71%)",
+      "type": "input"
+    },
+    {
+      "index": 21,
+      "value": "Hex (just because thats the format ive been using over the years)",
+      "type": "textarea"
+    },
+    {
+      "index": 22,
+      "value": "#ea66a4 and #1e17f2 (i changed it)",
+      "type": "input"
+    },
+    {
+      "index": 23,
+      "value": "147deg",
+      "type": "input"
+    },
+    {
+      "index": 24,
+      "value": "#ea66a4 and #1e17f2",
+      "type": "textarea"
+    },
+    {
+      "index": 25,
+      "value": "#00f",
+      "type": "input"
+    },
+    {
+      "index": 26,
+      "value": "double red",
+      "type": "input"
+    },
+    {
+      "index": 27,
+      "value": "background: #00f;\n  padding: 30px;\n  border-radius: 10px;\n  border: 10px double red;\n  text-align: center;\n  font-size: 1.2em;\n  color: #fff;\n  margin: 50px;",
+      "type": "textarea"
+    },
+    {
+      "index": 28,
+      "value": "The box model shows us the margin, border, padding, and content, and because every element in a page is in a box we can adjust each setting accordingly.",
+      "type": "textarea"
+    },
+    {
+      "index": 29,
+      "value": "HEX just because its the format I'm most familiar with.",
+      "type": "textarea"
+    },
+    {
+      "index": 30,
+      "value": "I can use the Developer tools on different websites to look at references, for example if there is a particular website design that i enjoy, i can use the Dev tools to look at how the coding is made, if not its a good tool to learn how websites code.",
+      "type": "textarea"
+    },
+    {
+      "index": 31,
+      "value": "none",
+      "type": "textarea"
+    }
+  ],
+  "completedTasks": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11"
+  ],
+  "progress": 11,
+  "completionDate": "2026-04-25T22:32:43.756Z"
+};
+    
+    // Wait for DOM to be ready
+    function restoreWork() {
+        console.log('📥 Restoring answers...');
+        
+        // Restore all input and textarea values
+        const inputs = document.querySelectorAll('input[type="text"], textarea');
+        SAVED_DATA.answers.forEach(function(answerData) {
+            if (inputs[answerData.index]) {
+                inputs[answerData.index].value = answerData.value;
+                console.log('✓ Restored answer ' + answerData.index);
+            }
+        });
+        
+        // Restore completed task states
+        SAVED_DATA.completedTasks.forEach(function(taskNum) {
+            const exercise = document.querySelector('[data-task="' + taskNum + '"]');
+            if (exercise && !exercise.classList.contains('completed')) {
+                exercise.classList.add('completed');
+                
+                // Add completion badge if it doesn't exist
+                if (!exercise.querySelector('.completion-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'completion-badge';
+                    badge.textContent = '✓ Completed';
+                    exercise.appendChild(badge);
+                }
+                
+                // Update button
+                const button = exercise.querySelector('.check-answer-btn');
+                if (button) {
+                    button.textContent = '✓ Task Complete';
+                    button.style.background = '#28a745';
+                    button.disabled = true;
+                }
+                
+                console.log('✓ Restored task ' + taskNum + ' completion');
+            }
+        });
+        
+        // Restore progress
+        if (SAVED_DATA.progress > 0) {
+            completedTasks = SAVED_DATA.progress;
+            const percentage = (completedTasks / totalTasks) * 100;
+            const progressBar = document.getElementById('progressBar');
+            const completedTasksSpan = document.getElementById('completedTasks');
+            
+            if (progressBar) {
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = Math.round(percentage) + '%';
+            }
+            if (completedTasksSpan) {
+                completedTasksSpan.textContent = completedTasks;
+            }
+            
+            // Show completion certificate if all tasks done
+            if (completedTasks === totalTasks) {
+                const certificate = document.getElementById('completion-certificate');
+                if (certificate) {
+                    certificate.style.display = 'block';
+                    
+                    const finalProgressBar = document.getElementById('finalProgressBar');
+                    const finalCompletedTasks = document.getElementById('finalCompletedTasks');
+                    if (finalProgressBar) {
+                        finalProgressBar.style.width = '100%';
+                        finalProgressBar.textContent = '100%';
+                    }
+                    if (finalCompletedTasks) {
+                        finalCompletedTasks.textContent = completedTasks;
+                    }
+                    
+                    const completionDate = document.getElementById('completionDate');
+                    if (completionDate) {
+                        const date = new Date(SAVED_DATA.completionDate);
+                        completionDate.textContent = date.toLocaleDateString('en-US', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                    }
+                }
+            }
+        }
+        
+        console.log('✅ All saved work has been restored!');
+        console.log('📊 Restored ' + SAVED_DATA.answers.filter(a => a.value).length + ' answers');
+        console.log('✓ Restored ' + SAVED_DATA.completedTasks.length + ' completed tasks');
+    }
+    
+    // Run restoration when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', restoreWork);
+    } else {
+        restoreWork();
+    }
+})();
+</script><script>
+        let completedTasks = 0;
+        const totalTasks = 11;
+
+        function checkTask(taskNumber) {
+            const task = document.querySelector(`[data-task="${taskNumber}"]`);
+            const inputs = task.querySelectorAll('.answer-box input, .answer-box textarea');
+            let allFilled = true;
+
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+
+            if (allFilled && !task.classList.contains('completed')) {
+                task.classList.add('completed');
+                
+                // Add completion badge
+                const badge = document.createElement('div');
+                badge.className = 'completion-badge';
+                badge.textContent = '✓ Completed';
+                task.appendChild(badge);
+
+                completedTasks++;
+                updateProgress();
+
+                // Disable the check button
+                const button = task.querySelector('.check-answer-btn');
+                button.textContent = '✓ Task Complete';
+                button.style.background = '#28a745';
+                button.disabled = true;
+            } else if (!allFilled) {
+                alert('Please fill in all answer fields before checking! Every question needs an answer.');
+            }
+        }
+
+        function updateProgress() {
+            const percentage = (completedTasks / totalTasks) * 100;
+            const progressBar = document.getElementById('progressBar');
+            const completedTasksSpan = document.getElementById('completedTasks');
+
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = Math.round(percentage) + '%';
+            completedTasksSpan.textContent = completedTasks;
+
+            if (completedTasks === totalTasks) {
+                setTimeout(() => {
+                    // Show completion certificate
+                    const certificate = document.getElementById('completion-certificate');
+                    certificate.style.display = 'block';
+                    
+                    // Update final progress in certificate
+                    const finalProgressBar = document.getElementById('finalProgressBar');
+                    const finalCompletedTasks = document.getElementById('finalCompletedTasks');
+                    finalProgressBar.style.width = '100%';
+                    finalProgressBar.textContent = '100%';
+                    finalCompletedTasks.textContent = completedTasks;
+                    
+                    // Set completion date
+                    const completionDate = document.getElementById('completionDate');
+                    const today = new Date();
+                    completionDate.textContent = today.toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                    
+                    // Scroll to certificate
+                    certificate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    alert('🎉 Congratulations! You\'ve completed all tasks! Scroll down to see your completion certificate and don\'t forget to download your completed file!');
+                }, 500);
+            }
+        }
+
+        // Function to download the completed file with embedded data
+        function downloadCompletedFile() {
+            console.log('📦 Starting download process...');
+            
+            // 1. Collect all student data into a clean object
+            const savedData = {
+                answers: [],
+                completedTasks: [],
+                progress: completedTasks,
+                completionDate: new Date().toISOString()
+            };
+            
+            // Collect all input and textarea values
+            const allInputs = document.querySelectorAll('input[type="text"], textarea');
+            allInputs.forEach((input, index) => {
+                savedData.answers.push({
+                    index: index,
+                    value: input.value,
+                    type: input.tagName.toLowerCase()
+                });
+            });
+            
+            // Collect completed task numbers
+            const completedExercises = document.querySelectorAll('.exercise.completed');
+            completedExercises.forEach((exercise) => {
+                const taskNum = exercise.getAttribute('data-task');
+                if (taskNum) {
+                    savedData.completedTasks.push(taskNum);
+                }
+            });
+            
+            console.log('📊 Collected data:', savedData);
+            
+            // 2. Clone the entire document
+            const clone = document.documentElement.cloneNode(true);
+            
+            // 3. Create a restoration script that will run when the file is opened
+            const restoreScript = document.createElement('script');
+            restoreScript.id = 'data-restore-script';
+            restoreScript.textContent = `
+// THIS SCRIPT RESTORES YOUR SAVED ANSWERS WHEN YOU OPEN THIS FILE
+(function() {
+    console.log('🔄 Restoring saved work...');
+    
+    // Embedded student data
+    const SAVED_DATA = ${JSON.stringify(savedData, null, 2)};
+    
+    // Wait for DOM to be ready
+    function restoreWork() {
+        console.log('📥 Restoring answers...');
+        
+        // Restore all input and textarea values
+        const inputs = document.querySelectorAll('input[type="text"], textarea');
+        SAVED_DATA.answers.forEach(function(answerData) {
+            if (inputs[answerData.index]) {
+                inputs[answerData.index].value = answerData.value;
+                console.log('✓ Restored answer ' + answerData.index);
+            }
+        });
+        
+        // Restore completed task states
+        SAVED_DATA.completedTasks.forEach(function(taskNum) {
+            const exercise = document.querySelector('[data-task="' + taskNum + '"]');
+            if (exercise && !exercise.classList.contains('completed')) {
+                exercise.classList.add('completed');
+                
+                // Add completion badge if it doesn't exist
+                if (!exercise.querySelector('.completion-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'completion-badge';
+                    badge.textContent = '✓ Completed';
+                    exercise.appendChild(badge);
+                }
+                
+                // Update button
+                const button = exercise.querySelector('.check-answer-btn');
+                if (button) {
+                    button.textContent = '✓ Task Complete';
+                    button.style.background = '#28a745';
+                    button.disabled = true;
+                }
+                
+                console.log('✓ Restored task ' + taskNum + ' completion');
+            }
+        });
+        
+        // Restore progress
+        if (SAVED_DATA.progress > 0) {
+            completedTasks = SAVED_DATA.progress;
+            const percentage = (completedTasks / totalTasks) * 100;
+            const progressBar = document.getElementById('progressBar');
+            const completedTasksSpan = document.getElementById('completedTasks');
+            
+            if (progressBar) {
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = Math.round(percentage) + '%';
+            }
+            if (completedTasksSpan) {
+                completedTasksSpan.textContent = completedTasks;
+            }
+            
+            // Show completion certificate if all tasks done
+            if (completedTasks === totalTasks) {
+                const certificate = document.getElementById('completion-certificate');
+                if (certificate) {
+                    certificate.style.display = 'block';
+                    
+                    const finalProgressBar = document.getElementById('finalProgressBar');
+                    const finalCompletedTasks = document.getElementById('finalCompletedTasks');
+                    if (finalProgressBar) {
+                        finalProgressBar.style.width = '100%';
+                        finalProgressBar.textContent = '100%';
+                    }
+                    if (finalCompletedTasks) {
+                        finalCompletedTasks.textContent = completedTasks;
+                    }
+                    
+                    const completionDate = document.getElementById('completionDate');
+                    if (completionDate) {
+                        const date = new Date(SAVED_DATA.completionDate);
+                        completionDate.textContent = date.toLocaleDateString('en-US', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                    }
+                }
+            }
+        }
+        
+        console.log('✅ All saved work has been restored!');
+        console.log('📊 Restored ' + SAVED_DATA.answers.filter(a => a.value).length + ' answers');
+        console.log('✓ Restored ' + SAVED_DATA.completedTasks.length + ' completed tasks');
+    }
+    
+    // Run restoration when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', restoreWork);
+    } else {
+        restoreWork();
+    }
+})();
+`;
+            
+            // 4. Append the restoration script to the cloned document's body
+            const clonedBody = clone.querySelector('body');
+            if (clonedBody) {
+                // Add it before the existing script
+                const existingScript = clonedBody.querySelector('script');
+                if (existingScript) {
+                    clonedBody.insertBefore(restoreScript, existingScript);
+                } else {
+                    clonedBody.appendChild(restoreScript);
+                }
+            }
+            
+            // 5. Get the complete HTML with DOCTYPE
+            const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
+            
+            // 6. Create and trigger download
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            
+            // Generate filename with date
+            const today = new Date();
+            const dateStr = today.toISOString().split('T')[0];
+            link.download = `week4-devtools-completed-${dateStr}.html`;
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Clean up
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+            
+            // Show success message
+            alert('✅ Success! Your completed file has been downloaded!\n\n' +
+                  '📁 File name: week4-devtools-completed-' + dateStr + '.html\n\n' +
+                  '📊 Saved:\n' +
+                  '  • ' + savedData.answers.filter(a => a.value).length + ' answers\n' +
+                  '  • ' + savedData.completedTasks.length + ' completed tasks\n\n' +
+                  '📤 You can now submit this file to Canvas!\n\n' +
+                  '💡 Tip: Open the downloaded file to verify your answers are saved!');
+            
+            console.log('✅ Download complete!');
+        }
+
+        // Add event listener when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveBtn = document.getElementById('saveWorkBtn');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', downloadCompletedFile);
+            }
+            
+            // Load any saved answers from localStorage (backup feature)
+            loadFromLocalStorage();
+            
+            console.log('%c🔧 Welcome to Developer Tools Practice!', 'font-size: 20px; color: #667eea; font-weight: bold;');
+            console.log('%cKeyboard Shortcuts:', 'font-size: 14px; font-weight: bold;');
+            console.log('Windows/Linux:');
+            console.log('  F12 or Ctrl+Shift+I - Open DevTools');
+            console.log('  Ctrl+Shift+C - Inspect Element');
+            console.log('Mac:');
+            console.log('  Fn+F12 or Cmd+Option+I - Open DevTools');
+            console.log('  Cmd+Option+C - Inspect Element');
+            console.log('%c💾 Remember to click the Download button when you\'re done!', 'font-size: 14px; color: #28a745; font-weight: bold;');
+        });
+
+        // LocalStorage backup functions
+        function saveToLocalStorage() {
+            const allInputs = document.querySelectorAll('input[type="text"], textarea');
+            const answers = {};
+            
+            allInputs.forEach((input, index) => {
+                answers[`answer_${index}`] = input.value;
+            });
+            
+            localStorage.setItem('week4_devtools_answers', JSON.stringify(answers));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('week4_devtools_answers');
+            
+            if (saved) {
+                const answers = JSON.parse(saved);
+                const allInputs = document.querySelectorAll('input[type="text"], textarea');
+                
+                allInputs.forEach((input, index) => {
+                    if (answers[`answer_${index}`]) {
+                        input.value = answers[`answer_${index}`];
+                    }
+                });
+                
+                console.log('%c📥 Previous answers restored from backup!', 'font-size: 14px; color: #28a745; font-weight: bold;');
+            }
+        }
+
+        // Auto-save to localStorage as backup
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('input[type="text"], textarea')) {
+                saveToLocalStorage();
+            }
+        });
+    </script>
+
+
+</body></html>
