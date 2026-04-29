@@ -1,1 +1,12 @@
-/* Add CSS Styling */
+.class {
+    background-color: pink; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#2 {
+    color: blue; font-size: 36px;
+}
+#4 {
+    background-color:green; font-size: 24px; font-weight: bold; 
+}
+.cool {
+    font-size: 24px;
+}
