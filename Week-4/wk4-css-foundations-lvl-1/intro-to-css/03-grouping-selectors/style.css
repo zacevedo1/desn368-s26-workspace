@@ -1,1 +1,9 @@
-/* Add CSS Styling */
+.Timmy, .Tom {
+    font-size: 28px; font-family: helvetical, times new roman, sans-serif;
+}
+.Timmy {
+    background-color: black; color: white;
+}
+.Tom {
+    background-color: yellow;
+}
