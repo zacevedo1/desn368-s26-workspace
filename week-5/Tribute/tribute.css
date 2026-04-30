@@ -2,3 +2,30 @@
     width: 800px;
     margin: 0 auto;
 }
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+img {
+    width: 400px;
+    height: auto;
+    margin-bottom: 0;
+}
+.date {
+    padding: 10px;
+    background-color: #571414;
+    color: white;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;  
+}
+#list-timeline {
+    List-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    margin: 40px;
+}
