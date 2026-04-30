@@ -1,31 +1,107 @@
-.tribute-container {
-    width: 800px;
-    margin: 0 auto;
+main {
+  max-width: 600px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #EEEAD0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-content: center;
+}
+h1, h2 {
+    font-family: orbitron;
 }
 h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 60px;
+    margin-bottom: 10px;
     margin-top: 0px;
+    color: #201E50;
+    text-align: center;
+    font-weight: 500;
 }
 
-img {
-    width: 400px;
-    height: auto;
-    margin-bottom: 0;
+h2 {
+     color: #201E50;
+     font-weight: 800;
+     margin-top: 40px;
+     margin-bottom: 5px;
 }
+p {
+    font-family: 'Roboto Flex', sans-serif;
+    margin-top: 0px;
+}
+.caption {
+    color: #AC3B29;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px 
+}
+img {
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    
+}
+
+
+
+
+li {
+    margin: 40px;
+}
+
+#list-timeline {
+    list-style-type: none;
+    padding: 0;
+}
+
+#list-timeline li {
+    padding-left: 103px;
+    text-indent: -92px;
+}
+
 .date {
+    font-family: orbitron;
+    letter-spacing: 3px;
     padding: 10px;
-    background-color: #571414;
+    background-color: #AC3B29;
     color: white;
     margin-right: 10px;
     margin-top: 10px;
-    margin-bottom: 20px;  
+    margin-bottom: 10px;  
+    font-weight: 800
+
 }
-#list-timeline {
-    List-style-type: none;
-    margin: 0;
-    padding: 0;
+.quote {
+    color: #AC3B29;
+    font-size: 20px;
+    padding: 5px 0px 0px 5px;
+    border-left: 6px solid #d4a574;
+    border-radius: 3px;
+    margin-top: 40px
 }
-li {
-    margin: 40px;
+#author {
+    text-align: right;
+    color:#201E50;
+    padding-bottom: -100px;
+}
+#profile-link {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 50px;
+    color: #EA8206;
+}
+#rights {
+     text-align: center;
+     text-weight: bold;
+     font-size: 15px;
+     color: #EA8206;
+    
+}
+#link {
+    color: #201E50;
 }

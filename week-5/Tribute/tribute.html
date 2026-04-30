@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tribute Page</title>
     <link rel="stylesheet" href="tribute.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Orbitron:wght@400..900&display=swap');
+    </style>
 </head>
 <body>
     <!--==HEADER==-->
@@ -16,7 +21,7 @@
         </div>
         <!-------==SECTION 1==-------->
         <section id='about'>
-            <h2>About Radia Perlman</h2>
+            <h2 class="sub-heading">Short Bio:</h2>
                 <p>Radia Perlman’s legacy is defined by a deep-seated skepticism of unnecessary complexity, a mindset that led her to 
                    design the invisible protocols that keep the global internet functional. Her most famous contribution, the 
                    Spanning Tree Protocol (STP), solved the critical problem of network "loops" by forcing data into a logical, tree-like system. 
@@ -28,27 +33,27 @@
                    logic is so sound.</p>
         </section>
         <!-------==SECTION 2==-------->
-        <section id="quote">
+        <section class="quote">
             <p>"The world would be a better place if more engineers, like me, hated technology.
                  The stuff I design, if I'm successful, nobody will ever notice. Things will just work."</p>
-            <p><em>- Radia Perlman</em></p>
+            <p id="author"><em>- Radia Perlman</em></p>
         </section>
         <!-------==SECTION 3==-------->
         <section id="timeline">
-            <h2>Timeline</h2>
+            <h2 class="sub-heading">Timeline</h2>
             <ul id="list-timeline">
                 <li><span class="date">1951</span> Born in Portsmouth, Virginia</li>
                 <li><span class="date">1973</span> Earned BS and MS in Mathematics from MIT</li>
                 <li><span class="date">1976</span> Developed TORTIS at the MIT AI Lab</li>
                 <li><span class="date">1980</span> Joined DIgital Equipment Corp (DEC) as a consulting engineer</li>
                 <li><span class="date">1985</span> Invented the Spanning Tree Protocol (STP)</li>
-                <li><span class="date">1988</span> Earned a PhD in Computer Science from MIT (Thesis on routing in calicious environments)</li>
+                <li><span class="date" id="bottom-box">1988</span> Earned a PhD in Computer Science from MIT (Thesis on routing in calicious environments)</li>
                 <li><span class="date">2014</span> Inducted into the internet Hall of Fame</li>
                 <li><span class="date">2016</span> Inducted into the National Inventors Hall of Fame</li>
             </ul>
             <!-------==SECTION 4==-------->
         <section id="her-hate">
-            <h2>Her "Hate" For Technology</h2>
+            <h2 class="sub-heading">Her "Hate" For Technology</h2>
              <p>Radia Perlman’s "hatred" for technology is actually a deep critique of unnecessary complexity and technical ego.
                She believes that if a system is designed well, it should be completely invisible; if you have to notice how it works, 
                it’s a failure. Instead of chasing flashy features, she focuses on building robust, "set it and forget it" logic that 
@@ -56,9 +61,9 @@
                find the most direct, self-stabilizing solution to a problem.</p>
         </section>
         <footer>
-            <p>Want to find out more about Radia Perlman? Go to 
-               <a href="https://en.wikipedia.org/wiki/Radia_Perlman" target="_blank" rel="noopener noreferrer">Wikipedia.com</a> to learn more.</p>
-            <p>&copy; 2026 Tribute Page. All rights reserved.</p>
+            <p id="profile-link">Want to find out more about Radia Perlman? Go to 
+               <a id= "link" href="https://en.wikipedia.org/wiki/Radia_Perlman" target="_blank" rel="noopener noreferrer">Wikipedia.com</a> to learn more.</p>
+            <p id="rights">&copy; 2026 Tribute Page. All rights reserved.</p>
         </footer>
 
             
