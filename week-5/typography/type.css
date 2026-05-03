@@ -1,0 +1,94 @@
+body {
+  max-width: 600px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #EFEFF0;
+  box-shadow: 0 0 20px rgba(0, 0, 0,0.1);
+  border-radius: 8px;
+  align-content: center;
+}
+
+.book-header {
+ 
+}
+
+.genre-label {
+  font-family: Quantico;
+  font-size: 15px;
+  text-align: center;
+  opacity: 0.5;
+  margin-bottom: 50px;
+}
+
+.book-title {
+  font-family: Bruno Ace SC;
+  font-size: 60px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.book-author {
+  font-family: Quantico;
+  text-size: 30px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+
+.chapter-number {
+  font-family: Quantico;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 10px
+}
+
+.chapter-title {
+  font-family: Quantico;
+  font-size: 35px;
+  margin-top: 0px;
+  margin-bottom: 0px
+}
+
+.book-meta {
+  font-family: Quantico;
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-bottom: 0px
+}
+
+.book-date {
+  font-family: Quantico;
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 0px
+}
+
+.book-excerpt {
+ margin-top: 30px;
+}
+
+.book-excerpt p {
+  font-family: Space Grotesk;
+  line-height: 30px;
+}
+
+.typography-analysis {
+  color: #0A1045;
+  margin-top: 40px;
+  margin-bottom: 0px
+}
+
+.typography-analysis h2 {
+  font-family: Space Grotesk;
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.typography-analysis p {
+  font-family: Space Grotesk;
+}
