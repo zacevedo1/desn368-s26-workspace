@@ -37,8 +37,8 @@ p {
 }
 /*backgroun image size 600x517px */
 .tribute-profile {
-    background-image: url();
-    background-size: cover;
+    background-image: url(my-custom-shapes.png);
+    margin-top: 10px;
     background-position: center;
 }
 .caption {
@@ -53,7 +53,8 @@ img {
     height: auto;
     display: block;
     margin: 0 auto;
-    margin-top: 40px;
+    padding-top: 100px;
+    margin-bottom: 30px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     
