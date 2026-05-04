@@ -8,7 +8,10 @@ main {
   align-content: center;
 }
 h1, h2 {
-    font-family: orbitron;
+     font-size: 30px;
+    font-family: quantico, sans-serif;
+    font-weight: 800;
+     color: #201E50;
 }
 h1 {
     font-size: 60px;
@@ -20,19 +23,23 @@ h1 {
 }
 
 h2 {
-    font-size: 30px;
     padding-top: 10px;
-     color: #201E50;
-     font-weight: 800;
      margin-top: 40px;
      margin-bottom: 5px;
 }
 p {
     font-family: 'Roboto Flex', sans-serif;
+    font-weight: 400;
     font-size: 20px;
-    line-height: 1.3;
+    line-height: 1.6;
     margin-top: 0px;
     padding-top: 15px;
+}
+/*backgroun image size 600x517px */
+.tribute-profile {
+    background-image: url();
+    background-size: cover;
+    background-position: center;
 }
 .caption {
     font-family: Electrolize;
@@ -86,9 +93,10 @@ li {
 .quote {
     color: #AC3B29;
     font-family: Electrolize;
+    Line-height: 1.5;
     font-size: 20px;
-    padding: 5px 0px 0px 5px;
-    border-left: 6px solid #d4a574;
+    padding: 5px 5px 5px 10px;
+    border-left: 6px solid #EA8206;
     border-radius: 3px;
     margin-top: 40px
 }
@@ -98,6 +106,7 @@ li {
 }
 #author {
     text-align: right;
+    padding-top: 20px;
     color:#201E50;
     padding-bottom: -100px;
 }
