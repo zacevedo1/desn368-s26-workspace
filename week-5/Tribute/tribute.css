@@ -14,8 +14,8 @@ h1, h2 {
      color: #201E50;
 }
 h1 {
-    font-size: 60px;
-    margin-bottom: 10px;
+    font-size: 70px;
+    margin-bottom: -20px;
     margin-top: 0px;
     color: #201E50;
     text-align: center;
@@ -30,22 +30,24 @@ h2 {
 p {
     font-family: 'Roboto Flex', sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.6;
     margin-top: 0px;
     padding-top: 15px;
+    margin-right: 25px;
 }
 /*backgroun image size 600x517px */
 .tribute-profile {
     background-image: url(my-custom-shapes.png);
-    margin-top: 10px;
+    margin-top: 0px;
+    padding-top: 0px;
     background-position: center;
 }
 .caption {
     font-family: Electrolize;
     color: #AC3B29;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     padding-bottom: 20px;
 }
 img {
@@ -53,15 +55,11 @@ img {
     height: auto;
     display: block;
     margin: 0 auto;
-    padding-top: 100px;
-    margin-bottom: 30px;
+    padding-top: 95px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     
 }
-
-
-
 
 li {
     margin: 40px;
@@ -76,7 +74,7 @@ li {
 
 #list-timeline li {
     padding-left: 103px;
-    text-indent: -92px;
+    text-indent: -102px;
 }
 
 .date {
@@ -89,17 +87,21 @@ li {
     margin-top: 10px;
     margin-bottom: 10px;  
     font-weight: 800
-
+}
+.text-line {
+    font-family: 'Roboto Flex', sans-serif;
+    margin-left: 10px;
 }
 .quote {
     color: #AC3B29;
     font-family: Electrolize;
     Line-height: 1.5;
-    font-size: 20px;
-    padding: 5px 5px 5px 10px;
-    border-left: 6px solid #EA8206;
+    font-size: 25px;
+    padding: 20px 0px 0px 5px;
+    border-left: 7px solid #EA8206;
+    margin: 40px 40px 40px 40px;
     border-radius: 3px;
-    margin-top: 40px
+    
 }
 #her-hate {
     margin-top: 70px;
@@ -107,23 +109,34 @@ li {
 }
 #author {
     text-align: right;
-    padding-top: 20px;
+    padding-top: 25px;
     color:#201E50;
-    padding-bottom: -100px;
 }
+footer {
+    background-color: #AC3B29;
+    margin: 50px -20px -40px -20px;
+    padding: 0px;
+     border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+    
 #profile-link {
     text-align: center;
+    padding-bottom: 0px;
     font-size: 15px;
     margin-top: 50px;
-    color: #EA8206;
+    color: white;
+    margin-bottom: 0px
 }
 #rights {
      text-align: center;
+     padding-top: 10px;
      text-weight: bold;
      font-size: 15px;
-     color: #EA8206;
+     color: white
+    
     
 }
 #link {
-    color: #201E50;
+    color: hwb(248 68% 2%);
 }
