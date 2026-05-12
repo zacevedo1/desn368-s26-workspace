@@ -48,7 +48,7 @@ body {
 }
 
 .eyebrow {
-  margin: 0;
+  margin-bottom: 10px;
   color: var(--accent-2);
   font-size: 0.9rem;
   letter-spacing: 0.18em;
@@ -56,9 +56,15 @@ body {
 }
 
 h1 {
-  margin: 0;
+  margin-bottom: 5px;
   font-size: clamp(2.4rem, 2.6vw, 3.4rem);
   line-height: 1.02;
+}
+
+.sub-heading {
+  margin: 20px 0 10px;
+  color: var(--accent);
+  font-size: 1.1em;
 }
 
 .lead {
