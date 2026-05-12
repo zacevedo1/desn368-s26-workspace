@@ -61,10 +61,9 @@ h1 {
   line-height: 1.02;
 }
 
-.sub-heading {
-  margin: 20px 0 10px;
-  color: var(--accent);
-  font-size: 1.1em;
+.subgroup {
+  font-size: 50px;
+  margin-top: 28px;
 }
 
 .lead {
