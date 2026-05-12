@@ -12,6 +12,12 @@ Hello my name is Zahara Acevedo and this is my portfolio home page. I'm a studen
 - `week-1/` — Newspaper layout, Lost Pet flyer, Favorite Band page
 - `week-2/` — HTML 101 exercises, Recipe page, HTML Skeleton
 - `week-3/` — CSS foundations, Recipe styling
+- `week-4/` - Mozilla DevTools, Recipe styling
+- `week-5/` -Tribute, Typography
+- `week-6/` -
+- `week-7/` - Flex Box
+- `week-8/` -
+- `week-9/` -
 
 ---
 
@@ -29,10 +35,10 @@ Hello my name is Zahara Acevedo and this is my portfolio home page. I'm a studen
 - [x] **Week 1:** Setup & Onboarding
 - [x] **Week 2:** The First Tag
 - [x] **Week 3:** Document Architecture
-- [ ] **Week 4:** The Cascade Begins
-- [ ] **Week 5:** Forms & Inputs
+- [x] **Week 4:** The Cascade Begins
+- [x] **Week 5:** Forms & Inputs
 - [ ] **Week 6:** Flexbox Mastery
-- [ ] **Week 7:** Tribute Page
+- [x] **Week 7:** Tribute Page
 - [ ] **Week 8:** Grid Systems
 - [ ] **Week 9:** Product Landing
 - [ ] **Week 10:** Portfolio System
