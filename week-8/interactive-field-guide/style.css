@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    color: #BC364F;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.banner {
+    width: 30%;
+    align-items: center;
+    gap: 20px;
+}
+
+#word-mark {
+    position:absolute;
+    top:50%;
+    left:50%;
+    z-index: 1;
+}
