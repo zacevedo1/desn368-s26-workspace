@@ -1,0 +1,2008 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Flexbox Tutorial — Two-Column Layout</title>
+  <style>
+/* ===== Reset & Base Styles ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  background: var(--bg-tertiary);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c7254e;
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ===== Tutorial Header ===== */
+.tutorial-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.tutorial-header h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tutorial-header > p {
+  font-size: 1rem;
+  opacity: 0.95;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  border-radius: 12px;
+}
+
+.progress-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Two-Column Split View Container ===== */
+.tutorial-container {
+  /* --steps-width is updated live by the draggable divider (tutorial.js) */
+  --steps-width: 45%;
+  display: flex;
+  gap: 0;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+}
+
+/* ===== Left Column: Tutorial Steps (Scrollable) ===== */
+.tutorial-steps {
+  flex: 0 0 var(--steps-width);
+  max-width: var(--steps-width);
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  height: calc(100vh - 140px);
+  background: var(--bg-secondary);
+}
+
+/* ===== Draggable Column Divider ===== */
+.col-resizer {
+  flex: 0 0 8px;
+  align-self: stretch;
+  position: relative;
+  cursor: col-resize;
+  background: var(--border-color);
+  transition: background 0.15s;
+  touch-action: none;
+}
+
+/* Grip handle in the middle of the bar */
+.col-resizer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  background: #94a3b8;
+  border-radius: 2px;
+}
+
+.col-resizer:hover,
+.col-resizer:focus-visible,
+.col-resizer.dragging {
+  background: var(--primary-color);
+  outline: none;
+}
+
+.col-resizer:hover::before,
+.col-resizer:focus-visible::before,
+.col-resizer.dragging::before {
+  background: white;
+}
+
+/* While dragging, keep the cursor consistent and stop the embedded
+   CodePen iframe from swallowing pointer events */
+body.col-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+body.col-resizing iframe {
+  pointer-events: none;
+}
+
+/* ===== Right Column: CodePen Workspace (Sticky) ===== */
+.codepen-workspace {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  background: white;
+}
+
+.codepen-sticky {
+  position: sticky;
+  top: 140px;
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.codepen-sticky h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.codepen-hint {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.codepen-embed {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  min-height: 0;
+}
+
+.codepen-embed iframe {
+  display: block;
+  height: 100%;
+}
+
+/* ===== Tutorial Introduction ===== */
+.tutorial-intro {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.tutorial-intro h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.tutorial-intro ul {
+  margin-left: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.tutorial-intro li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Tutorial Sections ===== */
+.tutorial-section {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  scroll-margin-top: 120px;
+}
+
+.section-header {
+  background: var(--bg-tertiary);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.section-progress {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.section-checkbox:checked + span {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+/* ===== Step Cards ===== */
+.step-card {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.step-card:last-child {
+  border-bottom: none;
+}
+
+.step-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.step-card h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.step-card p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.step-card ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.step-card li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.step-card ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.step-card ol li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Tip & Warning Boxes ===== */
+.tip-box {
+  background: #dbeafe;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.tip-box strong {
+  color: var(--primary-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.warning-box {
+  background: #fef3c7;
+  border-left: 4px solid var(--warning-color);
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.warning-box strong {
+  color: #d97706;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Solution Boxes ===== */
+.solution-box {
+  background: #f8fafc;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: all 0.3s;
+}
+
+.solution-box.hidden {
+  display: none;
+}
+
+.solution-box h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+/* ===== Resource Links ===== */
+.resource-links {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.resource-links strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.resource-links ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+.resource-links li {
+  margin-bottom: 0.375rem;
+}
+
+.resource-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.resource-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Checkpoints ===== */
+.checkpoint {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 2rem;
+}
+
+.checkpoint h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.checklist {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding: 0.4rem 0 0.4rem 1.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.checklist input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  cursor: pointer;
+}
+
+.checklist li code {
+  white-space: nowrap;
+}
+
+/* ===== Reflection Cards ===== */
+.reflection-card {
+  background: #faf5ff;
+  border: 2px solid #e9d5ff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 2rem 2rem;
+}
+
+.reflection-card h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.reflection-card p {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.reflection-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e9d5ff;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-bottom: 0.75rem;
+}
+
+.reflection-input:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+.reflection-input.saved {
+  border-color: var(--success-color);
+  background: #f0fdf4;
+}
+
+/* ===== Buttons ===== */
+.btn-primary,
+.btn-secondary,
+.btn-toggle-solution,
+.btn-save-reflection {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.btn-toggle-solution {
+  background: #fef3c7;
+  color: #d97706;
+  margin: 1rem 0;
+}
+
+.btn-toggle-solution:hover {
+  background: #fde68a;
+}
+
+.btn-save-reflection {
+  background: #e9d5ff;
+  color: #7c3aed;
+}
+
+.btn-save-reflection:hover {
+  background: #ddd6fe;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-toggle-solution:focus-visible,
+.btn-save-reflection:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ===== Submission Section ===== */
+#submission {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+}
+
+#submission h2 {
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.reflection-export {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  /* Stack columns vertically on tablets and below */
+  .tutorial-container {
+    flex-direction: column;
+  }
+
+  .tutorial-steps {
+    flex: none;
+    max-width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 1rem;
+  }
+
+  /* No column resizing when the layout is stacked */
+  .col-resizer {
+    display: none;
+  }
+
+  .codepen-workspace {
+    flex: none;
+  }
+
+  .codepen-sticky {
+    position: relative;
+    top: 0;
+    height: 600px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tutorial-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .tutorial-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .tutorial-intro,
+  .step-card {
+    padding: 1.5rem;
+  }
+
+  .checkpoint,
+  .reflection-card {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    padding: 1rem;
+  }
+
+  .section-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.25rem;
+  }
+
+  pre {
+    font-size: 0.75rem;
+  }
+
+  .reflection-export {
+    flex-direction: column;
+  }
+
+  .reflection-export button {
+    width: 100%;
+  }
+
+  .codepen-sticky {
+    height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutorial-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .tutorial-header > p {
+    font-size: 0.875rem;
+  }
+
+  .tutorial-steps {
+    padding: 1rem;
+  }
+
+  .tutorial-intro,
+  .step-card {
+    padding: 1rem;
+  }
+
+  .checkpoint,
+  .reflection-card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .section-header {
+    padding: 1rem;
+  }
+
+  .codepen-sticky {
+    height: 400px;
+  }
+}
+
+/* ===== Utility Classes ===== */
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+  <div class="tutorial-header">
+    <h1>Interactive Flexbox Tutorial</h1>
+    <p>Two-Column Flexbox with Sticky Sidebar + Anchor Nav</p>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+      <span class="progress-text" id="progressText">0% Complete</span>
+    </div>
+  </div>
+
+  <div class="tutorial-container">
+    <!-- Left Column: Tutorial Steps (Scrollable) -->
+    <div class="tutorial-steps">
+      <!-- Tutorial Introduction -->
+      <section class="tutorial-intro">
+      <h2>What You'll Build</h2>
+      <p><strong>Goal:</strong> Create a two-column page with Flexbox: a 300px sticky sidebar on the left and a scrollable content column on the right. Nav links jump to section IDs.</p>
+
+      <div class="warning-box">
+        <strong>📌 Read this first:</strong> Your CodePen starter <em>already contains</em> the full HTML structure and all the text. <strong>You do not write any HTML in this tutorial—your job is the CSS.</strong> Part A is a quick tour of the code you've been given. The real work starts in Part B, where you write CSS under the <code>/* Part B */</code> comment in the CSS panel.
+      </div>
+
+      <p><strong>What you'll learn:</strong></p>
+      <ul>
+        <li>Reading a semantic HTML structure so you know what you're styling</li>
+        <li>Setting up a parent flex container (horizontal layout)</li>
+        <li>Making a fixed-width sidebar + flexible content column</li>
+        <li>Making the sidebar sticky with CSS</li>
+        <li>Adding smooth-scrolling anchor navigation</li>
+        <li>Positioning decorative elements without blocking content</li>
+      </ul>
+    </section>
+
+    <!-- PART A: Meet Your Starter -->
+    <section class="tutorial-section" id="part-a">
+      <div class="section-header">
+        <h2>Part A — Meet Your Starter Code</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="a" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>A1) Open your starter and read the code</h3>
+        <p>You are <strong>not</strong> writing any HTML in this tutorial. Your CodePen starter already contains the full page structure <em>and</em> all the text. Part A is a guided tour so you understand what you'll be styling in Parts B–F. Spend a few minutes here—it makes everything after it easier.</p>
+
+        <p><strong>Open the HTML panel in your CodePen and find each of these:</strong></p>
+        <ul>
+          <li><code>&lt;header&gt;</code> — the page title and description. You can leave this alone for now.</li>
+          <li><code>&lt;main class="container"&gt;</code> — the box that wraps the sidebar and the content. <strong>This is the Flexbox parent</strong> you'll style in Part B.</li>
+          <li><code>&lt;nav class="sidebar"&gt;</code> — five links that are <em>already</em> pointing at <code>#section-1</code> through <code>#section-5</code>.</li>
+          <li><code>&lt;div class="content"&gt;</code> — the box that holds the five <code>&lt;section&gt;</code> blocks.</li>
+          <li>Five <code>&lt;section&gt;</code> elements, each with a unique id (<code>id="section-1"</code> … <code>id="section-5"</code>), an <code>&lt;h2&gt;</code>, paragraphs, and an <strong>empty</strong> <code>&lt;div class="deco" id="deco-1"&gt;</code> you'll fill in Part E.</li>
+          <li>A <code>&lt;footer&gt;</code> placed <em>outside</em> (after) the <code>&lt;main&gt;</code> element.</li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>⚠️ Do not rename anything.</strong> Every CSS hint in this tutorial targets these exact names: <code>.container</code>, <code>.sidebar</code>, <code>.content</code>, <code>.deco</code>, <code>#section-1</code>…<code>#section-5</code>, and <code>#deco-1</code>…<code>#deco-5</code>. If you rename a class or id, the hints stop working and your layout breaks. You only ever <em>add</em> to this code—you never rename it.
+        </div>
+
+        <div class="tip-box">
+          <strong>📝 Why is the footer outside <code>&lt;main&gt;</code>?</strong> The <code>&lt;main&gt;</code> element represents the dominant content of the page—here, the two-column sidebar + content layout. The footer is supplementary information, so it sits outside that layout. Keeping it outside <code>&lt;main&gt;</code> also means it won't accidentally become a flex item when you style <code>.container</code> in Part B.
+        </div>
+
+        <div class="tip-box">
+          <strong>📝 Now open the CSS panel.</strong> It already has a base reset (the <code>* { box-sizing }</code> rule and the <code>body</code> rule)—<strong>leave that alone</strong>. Below it you'll see comment markers: <code>/* Part B */</code>, <code>/* Part C */</code>, and so on. Write each step's CSS under its matching comment. The CSS panel is the <em>only</em> thing you edit in Parts B–F.
+        </div>
+
+        <div class="resource-links">
+          <strong>📚 Resources:</strong>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section" target="_blank">MDN: &lt;section&gt;</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#linking_to_an_element_on_the_same_page" target="_blank">MDN: Anchor links to IDs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint A — can you find these in the starter?</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> The <code>&lt;main class="container"&gt;</code> that wraps the sidebar and content</li>
+          <li><input type="checkbox" /> How many <code>&lt;section&gt;</code> elements there are, and what their ids are</li>
+          <li><input type="checkbox" /> An empty <code>&lt;div class="deco"&gt;</code> — what is its id?</li>
+          <li><input type="checkbox" /> Whether the <code>&lt;footer&gt;</code> is inside or outside <code>&lt;main&gt;</code></li>
+          <li><input type="checkbox" /> In the CSS panel, the <code>/* Part B */</code> comment where your first code goes</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>What advantages do you see in giving each section a unique id? Where could id vs. class trip you up?</p>
+        <textarea
+          class="reflection-input"
+          data-step="a"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="a">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART B: Flexbox Layout -->
+    <section class="tutorial-section" id="part-b">
+      <div class="section-header">
+        <h2>Part B — Flexbox Two-Column Layout</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="b" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>B1) Identify the Flexbox parent</h3>
+        <p><strong>Question:</strong> What element do you think the flexbox parent is? Why?</p>
+
+        <textarea
+          class="reflection-input"
+          placeholder="Type your answer here... (e.g., 'I think the flexbox parent is...')"
+          rows="3"
+          style="margin: 1rem 0;"></textarea>
+
+        <div class="tip-box">
+          <strong>💡 Hint:</strong> The flexbox parent is the container for the flex items. In this case, our flex items are the sidebar and the content.
+        </div>
+
+        <p>Once you've identified the flexbox parent, add CSS to make it a flex container. This sets up your two-column layout.</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-b1">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-b1">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>The flexbox parent:</strong> It's the <code>.container</code> class (on your <code>&lt;main&gt;</code> element). This element directly contains both the sidebar and content area.</li>
+            <li><strong>Making it a flex container:</strong> Add <code>display: flex;</code> to the <code>.container</code> selector.</li>
+            <li><strong>Add spacing:</strong> Use the <code>gap</code> property to create space between the sidebar and content (try <code>gap: 1.5rem;</code>).</li>
+            <li><strong>Add padding:</strong> Give the container some breathing room with <code>padding: 1rem;</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>B2) Size the two columns</h3>
+        <p>You want the sidebar to stay a fixed <strong>300px</strong> and never get squished, and the content to take all the leftover space. That's just <strong>three lines</strong> of Flexbox:</p>
+
+        <pre><code>.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+}</code></pre>
+
+        <p><strong>In plain English:</strong></p>
+        <ul>
+          <li><code>width: 300px;</code> — the sidebar is 300px wide (a property you already know).</li>
+          <li><code>flex-shrink: 0;</code> — <strong>never let it get squished</strong> below 300px.</li>
+          <li><code>flex: 1;</code> on the content — <strong>take whatever space is left over</strong>.</li>
+        </ul>
+
+        <p>That's the whole layout. Add a little styling to the sidebar so you can see it—reveal the hints if you want specifics.</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-b2">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-b2">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Sidebar styling:</strong> Add <code>padding: 1rem;</code>, a light background color like <code>#f5f5f5</code>, and <code>border-radius: 8px;</code> for rounded corners.</li>
+            <li><strong>Content width:</strong> Optionally add <code>max-width: 800px;</code> to the content so long lines of text stay readable.</li>
+            <li><strong>That's all the Flexbox you need here:</strong> <code>display: flex</code> on the parent (Part B1), <code>flex-shrink: 0</code> on the fixed column, and <code>flex: 1</code> on the flexible one.</li>
+          </ul>
+        </div>
+
+        <div class="resource-links">
+          <strong>📚 Resources:</strong>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox" target="_blank">MDN: Flexbox basics</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex" target="_blank">MDN: flex shorthand</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>B3) Going deeper (optional): what <code>flex: 1</code> really means</h3>
+        <p>You don't need this to finish the project—your layout already works. Expand it only if you're curious <em>why</em> those lines do what they do.</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-b3">🔎 Show the deeper explanation</button>
+
+        <div class="solution-box hidden" id="solution-b3">
+          <h4>The longhand behind the shorthand</h4>
+          <p><code>flex</code> is shorthand for three properties bundled together. Writing <code>flex: 1;</code> is the same as writing:</p>
+          <pre><code>flex-grow: 1;    /* expand to fill extra space */
+flex-shrink: 1;  /* allowed to shrink if needed */
+flex-basis: 0;   /* starting size before grow/shrink */</code></pre>
+          <ul>
+            <li><strong>flex-grow</strong> — how greedily an item takes leftover space. <code>0</code> = never grow; <code>1</code> = take a share.</li>
+            <li><strong>flex-shrink</strong> — whether an item may get smaller when space is tight. <code>0</code> = never shrink (that's exactly why our sidebar keeps its 300px).</li>
+            <li><strong>flex-basis</strong> — the item's size <em>before</em> any growing or shrinking happens.</li>
+          </ul>
+
+          <div class="tip-box">
+            <strong>🎯 Our layout, fully spelled out:</strong> the sidebar is <code>flex: 0 0 300px</code> (don't grow, don't shrink, stay 300px) and the content is <code>flex: 1 1 0</code> (grow, may shrink, start from nothing and fill the rest). The short versions you actually wrote—<code>width: 300px</code> + <code>flex-shrink: 0</code>, and <code>flex: 1</code>—are easier to read and do the same job. Reach for the long form only when you need fine control.
+          </div>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint B</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Does the layout show two columns?</li>
+          <li><input type="checkbox" /> Is the sidebar exactly 300px?</li>
+          <li><input type="checkbox" /> Does the content area expand when you widen the window?</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>In your own words, what does <code>flex: 1</code> do? And why does the sidebar need <code>flex-shrink: 0</code>?</p>
+        <textarea
+          class="reflection-input"
+          data-step="b"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="b">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART C: Sticky Sidebar -->
+    <section class="tutorial-section" id="part-c">
+      <div class="section-header">
+        <h2>Part C — Sticky Sidebar (No JavaScript)</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="c" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>C1) Make the sidebar sticky</h3>
+        <p>Now let's make the sidebar stay pinned while you scroll the page. This is pure CSS—no JavaScript needed!</p>
+
+        <p><strong>📚 First, do some research:</strong></p>
+        <ol>
+          <li>Read the MDN docs on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky" target="_blank"><code>position: sticky</code></a></li>
+          <li>Pay attention to:
+            <ul>
+              <li>What value you need for the <code>position</code> property</li>
+              <li>What the <code>top</code> property does with sticky positioning</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p><strong>Your task:</strong> Add CSS to <code>.sidebar</code> to make it stick to the top of the viewport when scrolling.</p>
+
+        <div class="warning-box">
+          <strong>⚠️ Common gotcha:</strong> Sticky positioning only works when the element's ancestor allows it (no <code>overflow: hidden</code> on parent elements). Keep <code>.container</code> simple!
+        </div>
+
+        <button class="btn-toggle-solution" data-solution="solution-c1">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-c1">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Make it sticky:</strong> Add <code>position: sticky;</code> to your <code>.sidebar</code> selector.</li>
+            <li><strong>Set the offset:</strong> Use <code>top: 1rem;</code> to keep it 1rem from the top of the viewport when scrolling.</li>
+            <li>That's it — just those two lines. Scroll the preview and watch the sidebar stay put.</li>
+          </ul>
+        </div>
+
+        <div class="resource-links">
+          <strong>📚 Resources:</strong>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky" target="_blank">MDN: position: sticky</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint C</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> When you scroll, does the sidebar stay pinned?</li>
+          <li><input type="checkbox" /> If you add a tall header later, would you need to adjust <code>top</code>?</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>In your words, why is <code>position: sticky</code> different from <code>position: fixed</code> here?</p>
+        <textarea
+          class="reflection-input"
+          data-step="c"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="c">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART D: Anchor Links -->
+    <section class="tutorial-section" id="part-d">
+      <div class="section-header">
+        <h2>Part D — Anchor Links + Scroll Polish</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="d" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>D1) See how the anchor links work</h3>
+        <p>Your starter already wires the navigation for you—you don't build it. In the HTML panel, find one matching pair:</p>
+        <ol>
+          <li>A link in <code>.sidebar</code> with an <code>href</code> like <code>href="#section-1"</code></li>
+          <li>The <code>&lt;section&gt;</code> with the matching <code>id="section-1"</code></li>
+          <li>Now click that nav link in the preview—does the page jump to that section?</li>
+        </ol>
+
+        <div class="tip-box">
+          <strong>💡 How anchor links work:</strong> When you click a link with <code>href="#section-1"</code>, the browser looks for an element with <code>id="section-1"</code> and scrolls to it. The <code>#</code> symbol tells the browser to look for an id on the current page rather than navigating to a new page. <strong>This is exactly why Part A warned you not to rename the section ids</strong>—renaming them would break this navigation.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>D2) Smooth scroll + heading alignment</h3>
+        <p>Right now, clicking anchor links causes an instant jump. Let's add smooth scrolling and prevent headings from being cut off at the top.</p>
+
+        <p><strong>📚 Research these CSS properties:</strong></p>
+        <ol>
+          <li><strong>Smooth scrolling:</strong> Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior" target="_blank"><code>scroll-behavior</code></a> on MDN
+            <ul>
+              <li>What element does this property go on? (<code>html</code> or your sections?)</li>
+              <li>What value creates smooth scrolling?</li>
+            </ul>
+          </li>
+          <li><strong>Scroll margin:</strong> Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin-top" target="_blank"><code>scroll-margin-top</code></a> on MDN
+            <ul>
+              <li>Why would you need space at the top when jumping to a section?</li>
+              <li>What's a good value to prevent headings from being glued to the edge?</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p><strong>Your task:</strong> Add CSS for smooth scrolling and proper spacing when jumping to sections. Also, add some visual styling to your sections (padding, background, borders, etc.).</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-d2">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-d2">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Smooth scrolling:</strong> Add <code>scroll-behavior: smooth;</code> to the <code>html</code> selector for smooth anchor navigation.</li>
+            <li><strong>Style your sections:</strong> Target your <code>section</code> elements directly with <code>padding: 2rem;</code>, <code>margin-bottom: 2rem;</code>, <code>background: white;</code>, <code>border: 1px solid #e0e0e0;</code>, and <code>border-radius: 8px;</code>.</li>
+            <li><strong>Prevent header cutoff:</strong> Add <code>scroll-margin-top: 1rem;</code> to your sections so headings aren't glued to the top edge when jumping to anchors.</li>
+            <li><strong>Prepare for Part E:</strong> Add <code>position: relative;</code> to your sections—this will be needed for positioning decorative icons later.</li>
+          </ul>
+        </div>
+
+        <div class="resource-links">
+          <strong>📚 Resources:</strong>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior" target="_blank">MDN: scroll-behavior</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin" target="_blank">MDN: scroll-margin</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint D</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Clicking each nav item jumps to the right section smoothly</li>
+          <li><input type="checkbox" /> The heading is comfortably visible after the jump</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>What problems might appear if you later add a fixed header? How would <code>scroll-margin-top</code> help?</p>
+        <textarea
+          class="reflection-input"
+          data-step="d"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="d">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART E: Decorative Icons -->
+    <section class="tutorial-section" id="part-e">
+      <div class="section-header">
+        <h2>Part E — Decorative Icons (Per Section)</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="e" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E1) Download icons from The Noun Project</h3>
+        <p>Let's add visual interest to each section with thematic icons related to flexbox and web design.</p>
+
+        <p><strong>📥 Download icons:</strong></p>
+        <ol>
+          <li>Go to <a href="https://thenounproject.com/" target="_blank">The Noun Project</a></li>
+          <li>Search for flexbox-related terms like:
+            <ul>
+              <li>"layout" or "grid"</li>
+              <li>"container" or "box"</li>
+              <li>"align" or "arrange"</li>
+              <li>"responsive" or "adapt"</li>
+              <li>"web design" or "code"</li>
+            </ul>
+          </li>
+          <li>Download <strong>5 icons</strong> (one for each section) as <strong>PNG or SVG files</strong></li>
+          <li>Choose icons that complement your content themes</li>
+          <li><strong>Note:</strong> Free icons are available! Look for the "Free" filter or create a free account</li>
+        </ol>
+
+        <div class="tip-box">
+          <strong>💡 Icon tips:</strong>
+          <ul>
+            <li>Download in a consistent style (all line art, all filled, etc.)</li>
+            <li>Choose a reasonable size (128px or 256px works well)</li>
+            <li>SVG files are preferred—they scale perfectly and have smaller file sizes</li>
+            <li>Save them with descriptive names like <code>icon-flexbox.svg</code>, <code>icon-container.svg</code>, etc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E2) Add icons to your HTML</h3>
+        <p>Now let's add the icons to each section's deco div.</p>
+
+        <p><strong>For CodePen users (using Snipboard):</strong></p>
+        <ol>
+          <li>Go to <a href="https://snipboard.io/" target="_blank">Snipboard.io</a></li>
+          <li>Click "Upload Files" and select your 5 icons</li>
+          <li>Once uploaded, click each image and copy its direct URL</li>
+          <li>In your HTML, update each deco div to include an <code>&lt;img&gt;</code> tag:
+            <pre><code>&lt;div class="deco" id="deco-1"&gt;
+  &lt;img src="SNIPBOARD_URL_HERE" alt=""&gt;
+&lt;/div&gt;</code></pre>
+          </li>
+          <li>Repeat for all 5 sections with their respective icon URLs</li>
+        </ol>
+
+        <div class="warning-box">
+          <strong>⚠️ Important for Final Project:</strong> When you create your final project submission (not in CodePen), you'll need to:
+          <ul>
+            <li>Create an <code>images</code> folder in your project directory</li>
+            <li>Save all your icon files in that folder</li>
+            <li>Update your image paths to <code>images/icon-name.svg</code></li>
+            <li>This ensures your images work when you submit your files or host your site</li>
+          </ul>
+        </div>
+
+        <p><strong>For local files (working outside CodePen):</strong></p>
+        <ol>
+          <li>Create an <code>images</code> folder in your project directory</li>
+          <li>Move your downloaded icons into that folder</li>
+          <li>Reference them in your HTML:
+            <pre><code>&lt;div class="deco" id="deco-1"&gt;
+  &lt;img src="images/icon-flexbox.svg" alt=""&gt;
+&lt;/div&gt;</code></pre>
+          </li>
+        </ol>
+
+        <div class="tip-box">
+          <strong>📝 Accessibility Note:</strong> We use <code>alt=""</code> (empty alt text) because these icons are purely decorative and don't convey essential information. Screen readers will skip them.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E3) Style the decorative icons</h3>
+        <p>Style the icons so they add visual interest without interfering with content.</p>
+
+        <p><strong>📚 Research CSS positioning:</strong></p>
+        <ul>
+          <li>Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank"><code>position: absolute</code></a> and how it removes elements from normal document flow</li>
+          <li>Learn about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events" target="_blank"><code>pointer-events: none</code></a> to prevent icons from blocking clicks</li>
+        </ul>
+
+        <p><strong>Your task:</strong> Style the <code>.deco</code> class and the <code>img</code> inside it:</p>
+        <ul>
+          <li>Position decorations absolutely so they don't affect layout</li>
+          <li>Make them semi-transparent with <code>opacity</code></li>
+          <li>Prevent them from blocking clicks with <code>pointer-events: none</code></li>
+          <li>Size the images appropriately (try 150-200px)</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-e1">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-e1">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Position the deco container:</strong> Add <code>position: absolute;</code> to <code>.deco</code> so it doesn't affect layout flow</li>
+            <li><strong>Make it non-blocking:</strong> Add <code>pointer-events: none;</code> so users can still click links beneath the icons</li>
+            <li><strong>Style the images:</strong> Target <code>.deco img</code> and set:
+              <ul>
+                <li><code>width: 150px;</code> (or your preferred size)</li>
+                <li><code>height: auto;</code> to maintain aspect ratio</li>
+                <li><code>opacity: 0.15;</code> to make them subtle</li>
+                <li><code>filter: grayscale(100%);</code> (optional) for a uniform look</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E4) Position each icon uniquely</h3>
+        <p>Style each decoration differently using their unique ids. Place icons in different positions to create visual variety.</p>
+
+        <p><strong>Your task:</strong> Use id selectors to position each icon differently:</p>
+        <ul>
+          <li><code>#deco-1</code> — Try <code>top: -10%; left: -5%;</code></li>
+          <li><code>#deco-2</code> — Try <code>top: 50%; right: -5%;</code></li>
+          <li><code>#deco-3</code> — Try <code>bottom: -10%; left: 50%;</code></li>
+          <li>Continue for remaining sections with your own creative positions!</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-e2">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-e2">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Target by id:</strong> Use <code>#deco-1</code>, <code>#deco-2</code>, etc. to style each decoration uniquely</li>
+            <li><strong>Position variations:</strong> Mix up <code>top</code>, <code>bottom</code>, <code>left</code>, and <code>right</code> values. Use percentages for fluid positioning</li>
+            <li><strong>Example:</strong>
+              <pre><code>#deco-2 {
+  top: 50%;
+  right: -5%;
+}
+
+#deco-3 {
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+}</code></pre>
+            </li>
+            <li><strong>Experiment!</strong> Try rotating icons with <code>transform: rotate(15deg);</code> or adjusting their size individually</li>
+          </ul>
+        </div>
+
+        <div class="resource-links">
+          <strong>📚 Resources:</strong>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank">MDN: Positioning</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html" target="_blank">W3C: Contrast basics</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint E</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Downloaded 5 icons from The Noun Project (or similar icon source)</li>
+          <li><input type="checkbox" /> Added <code>&lt;img&gt;</code> tags inside each <code>.deco</code> div</li>
+          <li><input type="checkbox" /> Icons are positioned absolutely and don't block content</li>
+          <li><input type="checkbox" /> Icons are semi-transparent and subtle</li>
+          <li><input type="checkbox" /> Each icon has a unique position using id selectors</li>
+          <li><input type="checkbox" /> Text remains readable and links are clickable</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>How did you ensure decoration didn't harm readability or usability? What would you change for dark vs. light themes?</p>
+        <textarea
+          class="reflection-input"
+          data-step="e"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="e">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART F: Finishing Touches -->
+    <section class="tutorial-section" id="part-f">
+      <div class="section-header">
+        <h2>Part F — Finishing Touches (Optional)</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="f" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>Optional Enhancements</h3>
+        <p>Polish your project with these accessibility and usability improvements. <strong>Note:</strong> While optional, completing Part F demonstrates attention to accessibility and can earn you extra consideration in grading.</p>
+        <ul>
+          <li>Add a focus style for sidebar links (<code>:focus-visible</code>)</li>
+          <li>Style the active link based on scroll (stretch goal with IntersectionObserver)</li>
+          <li>Add a "Back to top" link at the end of each section</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-f1">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-f1">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Focus styles:</strong> Target your nav links with <code>:focus-visible</code> pseudo-class. Add a visible <code>outline</code> (try <code>2px solid #3b82f6</code>), <code>outline-offset: 2px;</code>, and <code>border-radius: 4px;</code> for polish.</li>
+            <li><strong>Back to top link (HTML):</strong> Add <code>&lt;a href="#" class="back-to-top"&gt;↑ Back to top&lt;/a&gt;</code> at the end of each section.</li>
+            <li><strong>Back to top link (CSS):</strong> Style <code>.back-to-top</code> with <code>display: inline-block;</code>, <code>margin-top: 2rem;</code>, <code>padding: 0.5rem 1rem;</code>, a background color, <code>border-radius: 4px;</code>, and remove underline with <code>text-decoration: none;</code>. Add a <code>:hover</code> state with a darker background.</li>
+            <li><strong>Stretch goal - Active link:</strong> Use JavaScript's IntersectionObserver API to detect which section is currently visible and add an "active" class to the corresponding nav link.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint F</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Focus styles are visible and clear</li>
+          <li><input type="checkbox" /> Navigation has good accessibility</li>
+        </ul>
+      </div>
+
+      <div class="reflection-card">
+        <h4>🤔 Reflect (2–3 sentences):</h4>
+        <p>What one improvement most increases usability? Why?</p>
+        <textarea
+          class="reflection-input"
+          data-step="f"
+          placeholder="Write your reflection here..."
+          rows="4"></textarea>
+        <button class="btn-save-reflection" data-step="f">💾 Save Reflection</button>
+      </div>
+    </section>
+
+    <!-- PART G: Save Your Reflections -->
+    <section class="tutorial-section" id="part-g">
+      <div class="section-header">
+        <h2>Part G — Save Your Reflections</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="g" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>G1) Copy reflections to your HTML</h3>
+        <p>Save your reflections directly in your CodePen HTML file so they're preserved with your work.</p>
+
+        <p><strong>📋 Steps:</strong></p>
+        <ol>
+          <li>Click the "Copy All Reflections" button below</li>
+          <li>Go to your CodePen HTML editor</li>
+          <li>Scroll to the very bottom of your HTML (after the closing <code>&lt;/footer&gt;</code> tag)</li>
+          <li>Paste your reflections</li>
+          <li>Your reflections are now saved as an HTML comment in your code!</li>
+        </ol>
+
+        <div class="reflection-export" style="margin: 2rem 0;">
+          <button class="btn-primary" id="copyReflections">📋 Copy All Reflections</button>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Why save reflections in HTML?</strong> By pasting them as an HTML comment at the bottom of your code, they're permanently saved with your project. When you submit your CodePen link, your instructor can view both your code and reflections in one place.
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint G</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Clicked "Copy All Reflections" button</li>
+          <li><input type="checkbox" /> Pasted reflections at the bottom of HTML in CodePen</li>
+          <li><input type="checkbox" /> Verified reflections are visible in HTML (as a comment)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Submission Guide -->
+    <section class="tutorial-section" id="submission">
+      <h2>📤 Submission</h2>
+
+      <div class="step-card">
+        <h3>What to submit to Canvas</h3>
+        <ol>
+          <li><strong>Your CodePen link</strong> — Make sure your pen is saved and public</li>
+          <li>That's it! Your reflections are already in your HTML at the bottom</li>
+        </ol>
+
+        <div class="warning-box">
+          <strong>⚠️ Before submitting:</strong>
+          <ul>
+            <li>Verify your CodePen is saved (not showing "unsaved changes")</li>
+            <li>Test that your CodePen link opens correctly in a new browser tab</li>
+            <li>Confirm your reflections are pasted at the bottom of your HTML</li>
+          </ul>
+        </div>
+
+        <h3>Add to your homepage</h3>
+        <p>Link to this tutorial from your workspace homepage (<code>index.html</code>):</p>
+        <pre><code>&lt;a href="YOUR_CODEPEN_LINK"&gt;Flexbox Tutorial&lt;/a&gt;</code></pre>
+        <p>This way, your instructor can easily find all your work from your main workspace page.</p>
+
+        <div style="margin: 2rem 0;">
+          <button class="btn-secondary" id="clearProgress">🔄 Reset Progress</button>
+        </div>
+
+        <h3>Final Checklist</h3>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Sidebar is 300px and sticky</li>
+          <li><input type="checkbox" /> Five nav items link to matching ids</li>
+          <li><input type="checkbox" /> Right column flexes to fill space (Flexbox only—no grid)</li>
+          <li><input type="checkbox" /> Smooth scrolling works; headings aren't jammed at the top</li>
+          <li><input type="checkbox" /> Each section includes a decorative icon that doesn't block content</li>
+          <li><input type="checkbox" /> Basic accessibility: reasonable contrast, visible focus on nav links</li>
+        </ul>
+
+        <h3>Grading Rubric (10 pts)</h3>
+        <ul>
+          <li><strong>4 pts</strong> — Layout correctness (Flexbox, 300px sidebar, sticky behavior)</li>
+          <li><strong>3 pts</strong> — Anchors & scroll polish (IDs matched, smooth scroll, scroll-margin)</li>
+          <li><strong>2 pts</strong> — Decorative icons (positioned safely with absolute positioning, varied locations)</li>
+          <li><strong>1 pt</strong> — Reflection quality (clear, specific, shows understanding)</li>
+        </ul>
+      </div>
+    </section>
+    </div>
+    <!-- End Left Column -->
+
+    <!-- Draggable divider: drag to resize the two columns -->
+    <div
+      class="col-resizer"
+      id="colResizer"
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize the tutorial and workspace columns. Use arrow keys to adjust."
+      tabindex="0"></div>
+
+    <!-- Right Column: CodePen Workspace (Sticky) -->
+    <div class="codepen-workspace">
+      <div class="codepen-sticky">
+        <h2>Your Workspace</h2>
+        <p class="codepen-hint">Code along as you follow the tutorial →</p>
+
+        <div class="codepen-embed">
+          <iframe
+            height="100%"
+            style="width: 100%;"
+            scrolling="no"
+            title="Flexbox Tutorial Starter"
+            src="https://codepen.io/tmasingale/pen/jEWQvbN"
+            frameborder="no"
+            loading="lazy"
+            allowtransparency="true"
+            allowfullscreen="true">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <!-- End Right Column -->
+  </div>
+  <!-- End Tutorial Container -->
+
+  <script>
+// ===== Streamlined Tutorial Interactive Features =====
+// Simple state management, progress tracking, and reflections
+
+// Initialize state
+const TutorialState = {
+  completedSteps: new Set(),
+  reflections: {},
+};
+
+// ===== LocalStorage Management =====
+const Storage = {
+  KEYS: {
+    COMPLETED: 'flexbox-tutorial-completed',
+    REFLECTIONS: 'flexbox-tutorial-reflections',
+  },
+
+  load() {
+    try {
+      const completed = localStorage.getItem(this.KEYS.COMPLETED);
+      if (completed) {
+        TutorialState.completedSteps = new Set(JSON.parse(completed));
+      }
+
+      const reflections = localStorage.getItem(this.KEYS.REFLECTIONS);
+      if (reflections) {
+        TutorialState.reflections = JSON.parse(reflections);
+      }
+    } catch (error) {
+      console.error('Error loading from localStorage:', error);
+    }
+  },
+
+  save() {
+    try {
+      localStorage.setItem(
+        this.KEYS.COMPLETED,
+        JSON.stringify([...TutorialState.completedSteps])
+      );
+      localStorage.setItem(
+        this.KEYS.REFLECTIONS,
+        JSON.stringify(TutorialState.reflections)
+      );
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
+  },
+
+  clear() {
+    try {
+      Object.values(this.KEYS).forEach(key => localStorage.removeItem(key));
+      TutorialState.completedSteps.clear();
+      TutorialState.reflections = {};
+    } catch (error) {
+      console.error('Error clearing localStorage:', error);
+    }
+  },
+};
+
+// ===== Progress Tracking =====
+const Progress = {
+  TOTAL_STEPS: 6, // Parts A-F
+
+  update() {
+    const completed = TutorialState.completedSteps.size;
+    const percentage = Math.round((completed / this.TOTAL_STEPS) * 100);
+
+    // Update progress bar
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+
+    if (progressFill) {
+      progressFill.style.width = `${percentage}%`;
+    }
+
+    if (progressText) {
+      progressText.textContent = `${percentage}% Complete (${completed}/${this.TOTAL_STEPS})`;
+    }
+  },
+
+  toggle(step) {
+    if (TutorialState.completedSteps.has(step)) {
+      TutorialState.completedSteps.delete(step);
+    } else {
+      TutorialState.completedSteps.add(step);
+    }
+    Storage.save();
+    this.update();
+  },
+};
+
+// ===== Section Checkboxes =====
+const SectionCheckboxes = {
+  init() {
+    const checkboxes = document.querySelectorAll('.section-checkbox');
+
+    checkboxes.forEach(checkbox => {
+      const step = checkbox.dataset.step;
+
+      // Load saved state
+      if (TutorialState.completedSteps.has(step)) {
+        checkbox.checked = true;
+      }
+
+      // Handle changes
+      checkbox.addEventListener('change', () => {
+        Progress.toggle(step);
+      });
+    });
+  },
+};
+
+// ===== Solution Toggles =====
+const Solutions = {
+  init() {
+    const toggleButtons = document.querySelectorAll('.btn-toggle-solution');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const solutionId = button.dataset.solution;
+        const solutionBox = document.getElementById(solutionId);
+
+        if (solutionBox) {
+          const isHidden = solutionBox.classList.contains('hidden');
+
+          if (isHidden) {
+            solutionBox.classList.remove('hidden');
+            button.textContent = '🔒 Hide Solution';
+          } else {
+            solutionBox.classList.add('hidden');
+            button.textContent = '💡 Show Solution';
+          }
+        }
+      });
+    });
+  },
+};
+
+// ===== Reflections =====
+const Reflections = {
+  init() {
+    const saveButtons = document.querySelectorAll('.btn-save-reflection');
+
+    saveButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const step = button.dataset.step;
+        this.save(step);
+      });
+    });
+
+    // Load saved reflections
+    this.loadAll();
+
+    // Auto-save on input (debounced)
+    const textareas = document.querySelectorAll('.reflection-input');
+    textareas.forEach(textarea => {
+      let timeout;
+      textarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const step = textarea.dataset.step;
+          const content = textarea.value.trim();
+          if (content) {
+            TutorialState.reflections[step] = content;
+            Storage.save();
+          }
+        }, 1000);
+      });
+    });
+
+    // Copy all reflections button
+    const copyButton = document.getElementById('copyReflections');
+    if (copyButton) {
+      copyButton.addEventListener('click', () => this.copyAll());
+    }
+  },
+
+  save(step) {
+    const textarea = document.querySelector(`.reflection-input[data-step="${step}"]`);
+    if (!textarea) return;
+
+    const content = textarea.value.trim();
+    if (!content) {
+      alert('Please write a reflection before saving.');
+      return;
+    }
+
+    TutorialState.reflections[step] = content;
+    Storage.save();
+
+    // Visual feedback
+    textarea.classList.add('saved');
+    setTimeout(() => textarea.classList.remove('saved'), 2000);
+
+    // Update button text temporarily
+    const button = document.querySelector(`.btn-save-reflection[data-step="${step}"]`);
+    if (button) {
+      const originalText = button.textContent;
+      button.textContent = '✓ Saved!';
+      setTimeout(() => {
+        button.textContent = originalText;
+      }, 2000);
+    }
+  },
+
+  loadAll() {
+    Object.entries(TutorialState.reflections).forEach(([step, content]) => {
+      const textarea = document.querySelector(`.reflection-input[data-step="${step}"]`);
+      if (textarea) {
+        textarea.value = content;
+      }
+    });
+  },
+
+  copyAll() {
+    const steps = ['a', 'b', 'c', 'd', 'e', 'f'];
+    const labels = {
+      a: 'Part A: Meet Your Starter Code',
+      b: 'Part B: Flexbox Layout',
+      c: 'Part C: Sticky Sidebar',
+      d: 'Part D: Anchor Links',
+      e: 'Part E: Decorative Icons',
+      f: 'Part F: Finishing Touches',
+    };
+
+    let text = '<!--\n';
+    text += '═══════════════════════════════════════════════\n';
+    text += '  FLEXBOX TUTORIAL REFLECTIONS\n';
+    text += '═══════════════════════════════════════════════\n\n';
+
+    steps.forEach(step => {
+      const reflection = TutorialState.reflections[step];
+      if (reflection) {
+        text += `${labels[step]}\n`;
+        text += '─────────────────────────────────────────────\n';
+        text += `${reflection}\n\n`;
+      }
+    });
+
+    text += '═══════════════════════════════════════════════\n';
+    text += '-->';
+
+    if (text === '<!--\n═══════════════════════════════════════════════\n  FLEXBOX TUTORIAL REFLECTIONS\n═══════════════════════════════════════════════\n\n═══════════════════════════════════════════════\n-->') {
+      alert('No reflections to copy yet. Write some reflections first!');
+      return;
+    }
+
+    // Copy to clipboard
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert('All reflections copied as HTML comment! Paste at the bottom of your HTML file.');
+      })
+      .catch(err => {
+        console.error('Failed to copy:', err);
+        // Fallback: show in alert
+        prompt('Copy this text:', text);
+      });
+  },
+};
+
+// ===== Reset Progress =====
+const Reset = {
+  init() {
+    const resetButton = document.getElementById('clearProgress');
+    if (resetButton) {
+      resetButton.addEventListener('click', () => this.confirm());
+    }
+  },
+
+  confirm() {
+    const confirmed = confirm(
+      'Are you sure you want to reset all progress? This will clear:\n\n' +
+        '• Completed steps\n' +
+        '• Saved reflections\n\n' +
+        'This cannot be undone.'
+    );
+
+    if (confirmed) {
+      Storage.clear();
+
+      // Clear UI
+      document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      document.querySelectorAll('.reflection-input').forEach(input => {
+        input.value = '';
+      });
+
+      Progress.update();
+
+      alert('Progress reset successfully!');
+    }
+  },
+};
+
+// ===== Keyboard Shortcuts =====
+const Shortcuts = {
+  init() {
+    document.addEventListener('keydown', e => {
+      // Ctrl/Cmd + S to save reflections (prevent default browser save)
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        Storage.save();
+        this.showToast('Progress saved!');
+      }
+    });
+  },
+
+  showToast(message) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1e293b;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    `;
+
+    // Add CSS animations if not already added
+    if (!document.getElementById('toast-styles')) {
+      const style = document.createElement('style');
+      style.id = 'toast-styles';
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        @keyframes slideOut {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.animation = 'slideOut 0.3s ease';
+      setTimeout(() => toast.remove(), 300);
+    }, 2000);
+  },
+};
+
+// ===== Resizable Column Divider =====
+const Resizer = {
+  KEY: 'flexbox-tutorial-split-width',
+  MIN: 25, // min % width of the tutorial-steps column
+  MAX: 70, // max % width of the tutorial-steps column
+
+  init() {
+    this.container = document.querySelector('.tutorial-container');
+    this.handle = document.getElementById('colResizer');
+    if (!this.container || !this.handle) return;
+
+    // Restore saved width
+    const saved = parseFloat(localStorage.getItem(this.KEY));
+    if (!Number.isNaN(saved)) {
+      this.setWidth(saved);
+    }
+
+    // Pointer drag
+    this.handle.addEventListener('pointerdown', e => this.start(e));
+
+    // Keyboard accessibility (handle is role="separator", tabindex="0")
+    this.handle.addEventListener('keydown', e => {
+      if (window.innerWidth <= 1024) return;
+      const current = this.currentWidth();
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        this.setWidth(current - 2, true);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        this.setWidth(current + 2, true);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        this.setWidth(45, true);
+      }
+    });
+  },
+
+  currentWidth() {
+    const value = getComputedStyle(this.container).getPropertyValue('--steps-width');
+    const pct = parseFloat(value);
+    return Number.isNaN(pct) ? 45 : pct;
+  },
+
+  setWidth(pct, persist = false) {
+    const clamped = Math.min(this.MAX, Math.max(this.MIN, pct));
+    this.container.style.setProperty('--steps-width', `${clamped}%`);
+    if (persist) {
+      localStorage.setItem(this.KEY, clamped.toFixed(2));
+    }
+  },
+
+  start(e) {
+    // Only when columns are side by side (not stacked on small screens)
+    if (window.innerWidth <= 1024) return;
+    e.preventDefault();
+
+    this.handle.classList.add('dragging');
+    document.body.classList.add('col-resizing');
+    this.handle.setPointerCapture(e.pointerId);
+
+    const move = ev => {
+      const rect = this.container.getBoundingClientRect();
+      const pct = ((ev.clientX - rect.left) / rect.width) * 100;
+      this.setWidth(pct);
+    };
+
+    const end = ev => {
+      this.handle.classList.remove('dragging');
+      document.body.classList.remove('col-resizing');
+      try {
+        this.handle.releasePointerCapture(ev.pointerId);
+      } catch (_) {
+        /* pointer may already be released */
+      }
+      this.handle.removeEventListener('pointermove', move);
+      this.handle.removeEventListener('pointerup', end);
+      this.handle.removeEventListener('pointercancel', end);
+      localStorage.setItem(this.KEY, this.currentWidth().toFixed(2));
+    };
+
+    this.handle.addEventListener('pointermove', move);
+    this.handle.addEventListener('pointerup', end);
+    this.handle.addEventListener('pointercancel', end);
+  },
+};
+
+// ===== Initialize Everything =====
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('🎓 Interactive Flexbox Tutorial loaded!');
+
+  // Load saved state
+  Storage.load();
+
+  // Initialize all modules
+  SectionCheckboxes.init();
+  Solutions.init();
+  Reflections.init();
+  Reset.init();
+  Shortcuts.init();
+  Resizer.init();
+
+  // Update progress display
+  Progress.update();
+
+  console.log('✓ All features initialized');
+  console.log('Keyboard shortcut: Ctrl/Cmd+S = Save Progress');
+});
+
+// Auto-save before leaving
+window.addEventListener('beforeunload', () => {
+  Storage.save();
+});
+  </script>
+</body>
+</html>
+<!--
+═══════════════════════════════════════════════
+  FLEXBOX TUTORIAL REFLECTIONS
+═══════════════════════════════════════════════
+
+Part A: Meet Your Starter Code
+─────────────────────────────────────────────
+The advantages of using IDs is you can give a specific element a style and it wont copy over to other elements, however if your not carful, if you put an Id for example on a list, and then class for the the list items, the design choices on ID's will override the classes and can get you stuck wondering why the designs wont apply which is why it is important to use ID's sparingly.
+
+Part B: Flexbox Layout
+─────────────────────────────────────────────
+flex: 1 means to expand and take extra space, so it does not stay a set width, bit flex-shrink: 0 means to never shrink or get smaller bellow the set width, so if the set width is 300px it will stay at 300px no matter how small the screen gets
+
+Part C: Sticky Sidebar
+─────────────────────────────────────────────
+when sticky it is positioned according to the normal flow of the document, but when fixed it is removed. In other words sticky helps your element move with the scroll of your document so it always stays with you, but when its fixed it stays were it is at and is not with you.
+
+Part D: Anchor Links
+─────────────────────────────────────────────
+if you add a fixed header your header no longer flows with your document and is left on top overflowing, scroll-margin-top would help because when you set a margin it auto snaps so its not cut off, and unless you scroll past that value it will then snap to the next thing
+
+Part E: Decorative Icons
+─────────────────────────────────────────────
+You ensure it does not harm readability or usability when theres enough contrast, theres no distortion in the text, and its still readable. When it comes to dark themes you want the text to be bold and bright, and for light themes you want the text to be dark.
+
+Part F: Finishing Touches
+─────────────────────────────────────────────
+Focus increases usability because for people who cant see very well or are color blind, helps them tell the difference of where the mouse on the screen is and what is clicked
+
+═══════════════════════════════════════════════
+-->
