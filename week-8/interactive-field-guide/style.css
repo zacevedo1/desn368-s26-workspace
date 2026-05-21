@@ -7,25 +7,60 @@
 .container {
     display: flex;
     background-color: #BC364F;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    gap: 0px;
+}
+
+.sidebar {
+
+  background: #6C0C1E;
+  padding: 2rem 1.5rem;
+  width: 300px;
+}
+  nav {
+    position: sticky;
+     top: 0;
+}
+
+ul {
+    list-style: none;
+    gap: 10px;
+}
+
+li {
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+li:hover {
+    color: #BC364F;
 }
 
 #banner {
-    width: 20px;
+    width: 100%;
     align-items: center;
-    gap: 20px;
+    gap: 0px;
 }
 
 #word-mark {
-    position:absolute;
-    top:50%;
-    left:50%;
-    z-index: 1;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    top:23%;
+    left: 25%;
+    z-index: 4;
 }
 
 img {
     width: 30%;
     height: auto;
 }
+
+.content {
+    flex: 1;
+    flex-basis: auto;
+    padding: 2rem;
+    right: 50px;
+}
+
