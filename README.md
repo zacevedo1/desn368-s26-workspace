@@ -16,7 +16,7 @@ Hello my name is Zahara Acevedo and this is my portfolio home page. I'm a studen
 - `week-5/` -Tribute, Typography
 - `week-6/` -
 - `week-7/` - Flex Box
-- `week-8/` -
+- `week-8/` -Interctive Field Guide, Product Landing Page
 - `week-9/` -
 
 ---
