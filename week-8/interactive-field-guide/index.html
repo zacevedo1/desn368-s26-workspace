@@ -13,7 +13,7 @@
 
 <header>
 
-        <h1>Interactive Field Guide</h1>
+        <h1>Interactive Field Guide by Zahara Acevedo</h1>
 
         <img id="banner" src="images/field-guide-banner.png" alt="The Apothecary's banner"> 
 
@@ -24,14 +24,17 @@
 
 <!----===/// NAV SIDE BAR ///===------> 
 
+<a href="#sidebar" class="hamburger" aria-label="Open menu">&#9776;</a>
+
  <main class="container">
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" aria-label="Close menu">&#x2715;</a>
         <ul>
             <li><a href="#introduction">Story Overview</a></li>
-            <li><a href="#species">Characters</a></li>
-            <li><a href="#habitat">Historical Context</a></li>
-            <li><a href="#behavior">Forms of Media</a></li>
-            <li><a href="#conservation">Author</a></li>
+            <li><a href="#picture-container">Characters</a></li>
+            <li><a href="#historical-context">Historical Context</a></li>
+            <li><a href="#forms-of-media">Forms of Media</a></li>
+            <li><a href="#author">Author</a></li>
         </ul>
     </nav>
     <div class="content">
@@ -41,56 +44,56 @@
         <section id="introduction">
             <h2>Story Overview</h2>
             <p>Set in a fictional empire highly reminiscent of historical Ming or Qing dynasty China,
-               the story follows Maomao, a pragmatic and sharp-witted 17-year-old girl. Raised in the 
-               red-light district by her apothecary adoptive father, Maomao has developed an extensive, 
-               almost obsessive knowledge of medicine, herbs, and poisons. Her ordinary life is upended 
-               when she is kidnapped by bandits and sold into indentured servitude as a lowly maid in the 
+               the story follows Maomao, a pragmatic and sharp-witted 17-year-old girl. Raised in the
+               red-light district by her apothecary adoptive father, Maomao has developed an extensive,
+               almost obsessive knowledge of medicine, herbs, and poisons. Her ordinary life is upended
+               when she is kidnapped by bandits and sold into indentured servitude as a lowly maid in the
                Rear Palace, the sprawling complex where the Emperor's concubines reside.</p>
+            
         </section>
 
         <!----===/// SECTION 2 ///===------>
 
         <section id="picture-container">
             <h2>Characters</h2>
+            <section id="chara-container">
+                <fig>
+                <img class="img-box" src="images/maomao.png" alt="Maomao"> <figcaption>Maomao</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/maomao.png" alt="Maomao"> <figcaption>Maomao</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/Jinshi.png" alt="Jinshi"> <figcaption>Jinshi</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/Jinshi.png" alt="Jinshi"> <figcaption>Jinshi</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/gaoshun.svg" alt="gaoshun"> <figcaption>Gaoshun</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/gaoshun.svg" alt="gaoshun"> <figcaption>Gaoshun</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/basen.svg" alt="Basen"> <figcaption>Basen</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/basen.svg" alt="Basen"> <figcaption>Basen</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/gyokuyou.svg" alt="Gyokuyuo"> <figcaption>Gyokuyuo</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/gyokuyou.svg" alt="Gyokuyuo"> <figcaption>Gyokuyuo</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/emperor.svg" alt="Ying"> <figcaption>Emperor</figcaption>
+                </fig>
 
-            <fig>
-            <img class="img-box" src="images/emperor.svg" alt="Ying"> <figcaption>Emperor</figcaption>
-            </fig>
+                <fig>
+                <img class="img-box" src="images/xiaolan.svg" alt="xiaolan"> <figcaption>Xiaolan</figcaption>
+                </fig>
 
-            <fig>  
-            <img class="img-box" src="images/xiaolan.svg" alt="xiaolan"> <figcaption>Xiaolan</figcaption>
-            </fig>  
-
-            <fig>
-            <img class="img-box" src="images/luomen.svg" alt="luomen"> <figcaption>Luomen</figcaption>
-            </fig>
-
-
+                <fig>
+                <img class="img-box" src="images/luomen.svg" alt="luomen"> <figcaption>Luomen</figcaption>
+                </fig>
+            </section>
         </section>
 
         <!----===/// SECTION 3 ///===------>
 
-        <section id="Historical Context">
+        <section id="historical-context">
             <h2>Historical Context</h2>
             <p>Set in a fictional empire meticulously modeled after Ming and Qing dynasty China, 
                The Apothecary Diaries grounds its narrative in the rigid social stratification and brutal 
@@ -104,38 +107,43 @@
 
         <!----===/// SECTION 4 ///===------>
 
-        <section id="Forms of Media">
+        <section id="forms-of-media">
             <h2>Forms of Media</h2>
-
-            <img class="media" src="images/tap-light-novel.jpg" alt="light novel"> <p>Light Novel</p>
-            <img class="media" src="images/tps-manga.jpg" alt="manga"> <p>Manga</p>
-            <img class="media" src="images/tpd-anime-poster.jpg" alt="anime"> <p>Anime</p>
-
-            
+            <p class="media-desc">This series has 3 different ongoing versions:</p>
+            <p class="media-desc"><strong>light novel, manga, and anime</strong></p>
+            <div class="media-grid">
+                <img src="images/tap-light-novel.jpg" alt="light novel">
+                <img src="images/tps-manga.jpg" alt="manga">
+                <img src="images/tpd-anime-poster.jpg" alt="anime">
+            </div>
         </section>
 
         <!----===/// SECTION 5 ///===------>
 
-        <section id="Author">
+        <section id="author">
             <h2>Author</h2>
-            <img src="images/natsu-hyūga.webp" alt="author""> <h3>Hyūganatsu</h3>
-            <p>Hyūganatsu is a pseudonymous Japanese novelist. Her debut novel and representative work, 
-                The Apothecary Diaries, has been adapted into a novel,a light novel series, multiple
-                 manga series, and a TV anime.
-            </p>
+            <div class="author-content">
+                <img class="author-img" src="images/natsu-hyūga.webp" alt="Natsu Hyūga">
+                <div class="author-text">
+                    <h3>Natsu Hyūga</h3>
+                    <p>Hyūganatsu is a pseudonymous Japanese novelist. Her debut novel and representative work,
+                       The Apothecary Diaries, has been adapted into a novel, a light novel series, multiple
+                       manga series, and a TV anime.</p>
+                </div>
+            </div>
+            <div class="author-buttons">
+                <a href="#" class="btn">View Portfolio</a>
+                <a href="#" class="btn">Read Case Study</a>
+            </div>
         </section>
-        <section id="Portfolio-Case-Study">
-            <h2>View Portfolio</h2>
-            <h2> Read Case Study</h2>
-        </section>
-
-        <!----===/// FOOTER ///===------>
-            <footer>
-                <p> find out more at <a href="https://www.google.com">kusuriya.fandom.com</a></p>
-                <p>Created by Zahara Acevedo for DESN 368, Spring 2026</p>
-            </footer>
     </div>
  </main>
+
+<!----===/// FOOTER ///===------>
+<footer>
+    <p>Find out more at <a href="https://kusuriya.fandom.com">kusuriya.fandom.com</a></p>
+    <p>© 2025 Zahara Acevedo | Interactive Field Guide</p>
+</footer>
 <body>
 
 </body>
