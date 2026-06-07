@@ -1,5 +1,26 @@
-## The 4-5 prompts you actually ran in your AI agent — including the priming message (copy-paste them).
+## Project description
 
+#### A responsive product landing page for Owala water bottles, cut from my own Figma design for the P4 assignment in DESN 368. It follows the required structure (header, main with five sections, footer) but keeps my own visual order: hero, then features with a best-sellers row and photo collage, then the comparison table, then an embedded video, then a contact section with a join-the-club form. Built with separate HTML, CSS, and JS files.
+
+### Which CSS transform I implemented
+
+I used a few transforms. The hero bottle is rotated with transform: rotate(30deg), and the water-drop graphics use scaleX(-1) and rotate(180deg) to mirror and flip them into position. The best-seller cards lift on hover with transform: translateY(-8px) scale(1.03), and the buttons nudge up with translateY(-2px) on hover and press down with translateY(2px) on click.
+
+### Which CSS animation I implemented
+
+Two keyframe animations, both wrapped in @media (prefers-reduced-motion: no-preference). floatBottle makes the hero bottle gently bob up and down on a 4-second infinite loop (keeping its 30deg rotation), and riseIn fades the headline, copy, and CTA up into place on load with staggered delays.
+
+### Which table content type I chose
+
+A product comparison table titled "Why Choose Us?" comparing Owala (FreeSip) against Yeti (Rambler) and Stanley (Quencher) across six features: drinking function, leak protection, hygiene, durability, visual identity, and average price. It has a proper <thead> and <tbody>, row headers, and wraps in a overflow-x: auto div so it scrolls horizontally on mobile.
+
+### Challenges encountered and solutions
+
+The footer clouds were the hardest part. The cloud strip kept landing either too far up or directly on top of the content, and my Figma file didn't give me precise dimensions to work from. I ended up fixing it myself by adjusting the positioning until it sat right (a tall repeating background pushed up with negative positioning). For other design decisions the AI got wrong, instead of relying on the single full-page export I gave it at the start, I took close-up screenshots of the specific parts I wanted, and once it could see the detail it gave me what I was going for. The header logo and footer were also tricky for the same reason, my Figma didn't specify exact sizing. One thing worth noting: the mobile nav uses a small JavaScript file for the hamburger toggle. We weren't really supposed to use JavaScript, but I left it in so I could look into how it works, which is why my project ended up as three files (HTML, CSS, and JS) rather than two.
+
+### Key learnings
+
+The cut-up was easier than I expected, and I think that came down to specific prompting and making the AI confirm its plan before writing any code. The biggest lesson was that close, targeted reference images get far better results than one whole-page screenshot. I also learned how layered positioning works for elements that need to break out of their section (like the clouds), and got hands-on with separating structure, style, and behavior into three files.
 
 ### Prompt 1: 
  The setup. "okay so im cutting my figma into html for my P4 in DESN 368, here are all the rules i have to follow [spec]. i attached my design, can you read it and tell me how youd map it out before you write anything, i dont want code yet just confirm the structure first"
@@ -22,3 +43,10 @@ The footer with the clouds, that took me a lot of time to mess around with becau
 
 ## One sentence on what step in your Figma was missing or weak that made the cut-up harder than it should have been — or "my Figma was tight, the cut-up was clean," if that's true.
 Everything was not as hard as i thought it was and thats probably because my prompting was very specific, and before i had it run anything i made sure it confirmed it through me first. But if i had to pick one struggle it was the header and the footer because my figma file did not provide the precise dimensions or idea of how i had it.
+
+
+
+
+
+
+
