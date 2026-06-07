@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study – Interactive Field Guide</title>
+    <link rel="stylesheet" href="case-study.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<header>
+    <h1>Interactive Field Guide by Zahara Acevedo</h1>
+    <img id="banner" src="images/field-guide-banner.png" alt="The Apothecary's banner">
+    <img id="word-mark" src="images/TAD-wordmark.webp" alt="The Apothecary's logo">
+</header>
+
+<a href="#sidebar" class="hamburger" aria-label="Open menu">&#9776;</a>
+
+<main class="container">
+    <nav class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" aria-label="Close menu">&#x2715;</a>
+        <ul>
+            <li><a href="#design-decisions">Design Decisions</a></li>
+            <li><a href="#technical-challenges">Technical Challenges</a></li>
+            <li><a href="#responsive-strategy">Responsive Strategy</a></li>
+            <li><a href="#learning-moments">Learning Moments</a></li>
+            <li><a href="#future-improvements">Future Improvements</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="case-study-content">
+
+            <a href="index.html" class="back-link">&#8592; Back to Guide</a>
+
+            <section id="design-decisions" class="case-section">
+                <h2>Design Decisions</h2>
+                <p>I think most of the design decisions I made was based off of the word mark and the main character Maomao, 
+                   you know when you watch a show and it just gives off this color or shade all through out the show? Kind of like that,
+                   but i also did try matching the colors to reflect the imperial court setting. I chose a deep maroon and forest green palette, 
+                   rich, serious, and layered with meaning. The cream and gold accent tones were pulled directly from traditional East Asian 
+                   manuscript aesthetics, which felt appropriate for a story set in a fictionalized historical empire. For the fonts I wanted 
+                   something that was not too simple but still gave off historic vibes and so I went with Bona Nova SC as the primary and Laila as the body text.</p>
+
+                <p>I selected Bona Nova SC as the primary typeface because its small-caps character gave the headings a formal, archival quality without feeling stiff. 
+                   Every section heading uses <code>font-variant: small-caps</code>, which ties the typography back to that historical reference without needing ornate 
+                   decorative fonts. The sidebar navigation was designed to feel like a bookmark system in a physical guide, narrow, dark, and always present.</p>
+
+                <p>For the hero section, i wanted to create a sense of depth and flow for the banner image, and make it feel like the image was flowing into the design, so i edited
+                    the original image to have a gradient fade from the bottom up, doing this also allowed me to incorporate the word mark into the banner image itself, 
+                    which was a fun design choice to make, and without it, the word mark would have been hard to see. The result gives the top of the page a more cinematic, editorial quality that sets the tone before the reader 
+                    scrolls into the content.</p>
+
+            </section>
+
+            <section id="technical-challenges" class="case-section">
+                <h2>Technical Challenges</h2>
+                <p>The part that i had the most technical trouble with was the side bar and the hamburger menu. Since ive never done it before i had to do a lot of researching
+                   not only that but assistance by two different AI modeles, Gemini and Claude. Eventually i was able to figure it out but even now i feel like it still would not
+                   know how to do it again.
+                   
+
+                <p>Another challenge was the active navigation state. I wanted the sidebar link to highlight green when the user was in the corresponding section. 
+                    Active states are another area where i struggled on, especially figuring out the CSS so i did need to have the models help me with that as well.
+                     I ended up using the <code>:target</code> pseudo-class to style the active link based on the URL hash, which was a simple solution but has 
+                     limitations since it doesn't track actual scroll position, why you ask? Because i would need javascript, and that unfortunately i have not learned 
+                     how to use yet.</p>
+
+                <p>The character card grid also gave me trouble early on. Only two images were rendering visibly at first, caused by a combination of a global 
+                    <code>img { width: 30% }</code> rule being removed and <code>min-width: auto</code> on flex children causing overflow clipping. The fix was adding 
+                    <code>min-width: 0</code> to the <code>fig</code> element and switching the image to <code>width: 100%; max-width: 130px</code> so it scaled within 
+                    its grid cell correctly.</p>
+            </section>
+
+            <section id="responsive-strategy" class="case-section">
+                <h2>Responsive Strategy</h2>
+                <p>I used two breakpoints: a mobile breakpoint at <code>max-width: 640px</code> and a large desktop breakpoint at <code>min-width: 1440px</code>. The mobile breakpoint 
+                    handles the most significant layout shift, the sticky sidebar becomes a hidden off-canvas panel, the 4-column character grid collapses to 2 columns, the media images 
+                    stack vertically, and the author section shifts from a horizontal to a vertical layout.</p>
+
+                <p>On mobile, I wanted users to still have access to navigation without the sidebar taking up the whole screen. The hamburger menu handles this with a fixed icon at the top-left.
+                    The title bar (<code>header h1</code>) is also fixed on mobile so the page title and brand stay visible while scrolling through long content sections. I kept the banner image 
+                    and wordmark in the normal document flow so they appear at the top of the page when the user first lands.</p>
+
+                <p>The desktop breakpoint at 1440px widens the sidebar from 210px to 300px and increases the padding and heading font size for larger displays. This ensures the layout doesn't feel 
+                    cramped or stretched at very large screen widths, while keeping a consistent visual weight across the content area.</p>
+            </section>
+
+            <section id="learning-moments" class="case-section">
+                <h2>Learning Moments</h2>
+                <p>This project taught me a lot about the difference between <code>position: sticky</code>, <code>position: fixed</code>, and <code>position: absolute</code> in practice. 
+                    This project forced me to think about how they interact, for example, why <code>position: sticky</code> stops working when a parent has <code>overflow: hidden</code>, 
+                    or why a child set to <code>position: absolute</code> positions itself relative to the nearest positioned ancestor rather than the page. However keep in mind if you where to
+                    ask me what these are a day later i would have absolutly no idea.</p>
+
+                <p>Flexbox was the biggest challenge for me, because its one of those concepts that seems simple until you try to implement it, and when you think you have it figured out, you realize you don't. 
+                    I did learn however that flex children have <code>min-width: auto</code> by default, which can cause them to overflow their container even when <code>overflow: hidden</code> is set on the parent. 
+                    Setting <code>min-width: 0</code> explicitly was the fix I needed for the character grid, and understanding why that works helped me think more carefully about how flex layout resolves sizing conflicts.</p>
+
+                <p>Through this coding project, i feel like i have a much better understanding of how to structure a complex webpage with multiple sections and a sticky sidebar. I also learned a lot about how to use CSS to create an engaging, editorial-style layout that supports the content. 
+                    I feel like this project was a big step up in terms of complexity and polish compared to my previous projects, and I'm proud of how it turned out.</p>
+
+            </section>
+
+            <section id="future-improvements" class="case-section">
+                <h2>Future Improvements</h2>
+                <p>If I had more time, I would add smooth scroll behavior and animated section transitions as the user navigates through the guide.</p>
+                <p>I would also expand the content for each section significantly. The Story Overview and Historical Context sections currently rely on paragraph text alone. I'd like to add pull quotes, more inline illustrations, and annotated image callouts, similar to how a real field guide or encyclopedia entry is structured.</p>
+                <p>On the technical side, I'd revisit the character cards and add a hover state that reveals a short bio for each character, i would work a little more with the spacing and also take the time to further my understanding on the coding aspect of active states, along with flexbox and the different position properties.</p>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>Find out more at <a href="https://kusuriya.fandom.com">kusuriya.fandom.com</a></p>
+    <p>© 2025 Zahara Acevedo | Interactive Field Guide</p>
+</footer>
+<body>
+
+</body>
+</html>

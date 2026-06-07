@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+    font-family: Laila, sans-serif;
+    line-height: 1.6;
+}
+
 .container {
     display: flex;
     background-color: #BC364F;
@@ -21,22 +27,22 @@
   overflow-y: auto;
 }
 
+.container:has(#design-decisions:target) .sidebar a[href="#design-decisions"],
+.container:has(#technical-challenges:target) .sidebar a[href="#technical-challenges"],
+.container:has(#responsive-strategy:target) .sidebar a[href="#responsive-strategy"],
+.container:has(#learning-moments:target) .sidebar a[href="#learning-moments"],
+.container:has(#future-improvements:target) .sidebar a[href="#future-improvements"] {
+    background-color: #327031;
+    color: #A1F6A0;
+}
+
 .sidebar a {
   font-family: 'Bona Nova SC', serif;
-  color: #FFFBCE;
+  color: #FFFBCE;;
   text-decoration: none;
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
   display: inline-block;
-}
-
-.container:has(#introduction:target) .sidebar a[href="#introduction"],
-.container:has(#picture-container:target) .sidebar a[href="#picture-container"],
-.container:has(#historical-context:target) .sidebar a[href="#historical-context"],
-.container:has(#forms-of-media:target) .sidebar a[href="#forms-of-media"],
-.container:has(#author:target) .sidebar a[href="#author"] {
-    background-color: #327031;
-    color: #A1F6A0;
 }
 
 ul {
@@ -86,6 +92,7 @@ header {
 }
 
 header h1 {
+    font-family: 'Bona Nova SC', serif;
     text-align: center;
     color: #FFFBCE;
     font-variant: small-caps;
@@ -102,107 +109,13 @@ header h1 {
     padding: 2rem;
 }
 
-#chara-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-fig {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-}
-
-.img-box {
-    width: 100%;
-    max-width: 130px;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 22px;
-    display: block;
-}
-
-figcaption {
-    color: white;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
 h2 {
     font-variant: small-caps;
     color: #FFFBCE;
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
     font-family: 'Bona Nova SC', serif;
     font-weight: 400;
-}
-
-.media-desc {
-    color: white;
-    margin-bottom: 0.3rem;
-    font-size: 1rem;
-}
-
-.media-desc strong {
-    color: white;
-}
-
-.media-grid {
-    display: flex;
-    gap: 16px;
-    margin-top: 1rem;
-}
-
-.media-grid img {
-    width: 30%;
-    max-width: 200px;
-    height: auto;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
-}
-
-body {
-    font-family: Laila, sans-serif;
-    color: #fff;
-    line-height: 1.6;
-}
-
-.author-content {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-}
-
-.author-img {
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 16px;
-    flex-shrink: 0;
-}
-
-.author-text h3 {
-    font-variant: small-caps;
-    font-family: 'Bona Nova SC', serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-    color: #FFFBCE;
-    margin-bottom: 0.5rem;
-}
-
-.author-text p {
-    color: white;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.author-buttons {
-    display: flex;
-    gap: 1rem;
 }
 
 .btn {
@@ -249,7 +162,6 @@ footer p:last-child {
 
 .hamburger {
     display: none;
-
 }
 
 .sidebar .close-btn {
@@ -260,6 +172,46 @@ section {
     margin-bottom: 3.5rem;
 }
 
+/* Case Study specific */
+
+.case-study-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: #F0DFA8;
+    text-decoration: none;
+    font-variant: small-caps;
+    font-family: 'Bona Nova SC', serif;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+.back-link:hover {
+    color: #C9A84C;
+}
+
+.case-section {
+    margin-bottom: 3rem;
+    border-left: 3px solid #C9A84C;
+    padding-left: 1.5rem;
+}
+
+.case-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.case-section p {
+    color: #f0e8d0;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
 
 @media (min-width: 1440px) {
     .sidebar {
@@ -318,12 +270,12 @@ section {
     }
 
     header {
-        padding-top: 3rem;
+        padding-top: 2.5rem;
     }
 
     header h1 {
         position: fixed;
-        top: 12px;
+        top: 0;
         left: 0;
         width: 100%;
         z-index: 99;
@@ -334,34 +286,12 @@ section {
         padding-top: 3rem;
     }
 
-    #chara-container {
-        grid-template-columns: repeat(2, 1fr);
+    .case-study-content {
+        padding: 1rem;
+        padding-top: 3rem;
     }
 
-    .media-grid {
-        flex-direction: column;
-    }
-
-    .media-grid img {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .author-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .author-text {
-        text-align: center;
-    }
-
-    .author-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn {
-        text-align: center;
+    .case-section h2 {
+        font-size: 1.4rem;
     }
 }
