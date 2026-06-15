@@ -1,77 +1,75 @@
-
-
-# Portfolio Home Page
-
-### Zahara Gissel Acevedo - DESN 368 Portfolio
-
-Hello my name is Zahara Acevedo and this is my portfolio home page. I'm a student in the design program at Eastern Washington University. I'm always looking for the chance to learn new things and better my skills.
+# DESN 368
+## Zahara Acevedo — Web Design Portfolio
+Code + Design 1 · Spring 2026 · Eastern Washington University · Instructor: Travis Masingale
 
 ---
 
-### Current Course Work
-- `week-1/` — Newspaper layout, Lost Pet flyer, Favorite Band page
-- `week-2/` — HTML 101 exercises, Recipe page, HTML Skeleton
-- `week-3/` — CSS foundations, Recipe styling
-- `week-4/` - Mozilla DevTools, Recipe styling
-- `week-5/` -Tribute, Typography
-- `week-6/` -
-- `week-7/` - Flex Box
-- `week-8/` -
-- `week-9/` -
+## About This Repository
+This repository documents my journey through DESN368, where I learned to build for the web with HTML and CSS—understanding how the web actually works at the source level.
+
+[View Live Portfolio](index.html) · [View Learning Log](learning-log.html) — Weekly progress & exercises
 
 ---
 
-### 🛠️ My Toolkit
+## Design Direction
+For my portfolio, I pursued a [describe your vibe in 2-3 words] aesthetic.
 
-- **GitHub Profile:** [https://github.com/zacevedo1](https://github.com/zacevedo1)
-- **GitHub Workspace Repository:** [https://github.com/zacevedo1/desn368-s26-workspace](https://github.com/zacevedo1/desn368-s26-workspace)
-- **Figma:** [@zahara6](https://www.figma.com/@zahara6)
-- **CodePen:** [https://codepen.io/zacevedo1](https://codepen.io/zacevedo1)
+| Element        | Choice      |
+|----------------|-------------|
+| Header Font    | [Font Name] |
+| Body Font      | [Font Name] |
+| Primary Color  | #000000     |
+| Accent Color   | #000000     |
+| Background     | #000000     |
 
----
-
-### 🎯 Course Progress
-
-- [x] **Week 1:** Setup & Onboarding
-- [x] **Week 2:** The First Tag
-- [x] **Week 3:** Document Architecture
-- [x] **Week 4:** The Cascade Begins
-- [x] **Week 5:** Forms & Inputs
-- [ ] **Week 6:** Flexbox Mastery
-- [x] **Week 7:** Tribute Page
-- [ ] **Week 8:** Grid Systems
-- [ ] **Week 9:** Product Landing
-- [ ] **Week 10:** Portfolio System
-- [ ] **Finals:** Ship It
+[View Figma File](https://www.figma.com/@zahara6)
 
 ---
 
-### 👤 Contact Information
-**Student:** Zahara Gissel Acevedo  
-**Email:** zacevedo1@ewu.edu  
-**Course:** DESN368 CODE + DESIGN 1  
-**Quarter:** Spring 2026
+## Featured Projects
 
-
-## 🔗 **Course Resources**
-### **Primary Course Hub**
-- **📌 Milanote Course Home** - [Course board with assignments & resources](https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i)
-
-### **Learning Platforms**
-- **📚 Canvas LMS** - [Grades and official submissions](https://canvas.ewu.edu)
-- **🎨 Figma Team** - [Design projects](https://www.figma.com/team_invite/redeem/x4YhkxdsvcOhUte2KX7Zwm?t=MxznjhsFuM43uNyb-21)
-
-### **Practice & Reference**
-- **📖 Course Syllabus** - [Course policies and schedule](https://code-and-design.org/1/syllabus/)  
-  
-
-### **Support**
-- **✉️ Instructor Email:** [tmasingale@ewu.edu](mailto:tmasingale@ewu.edu)
-- **🏢 Office Hours:** Mon/Wed 1–2:30pm, Thurs 1–2pm
-- **📍 Location:** Catalyst Room 167  
+| Project              | Description              | Live Site | Process |
+|----------------------|--------------------------|-----------|---------|
+| The Recipe           | [1-sentence description] | [View →]()  | [Figma]() |
+| Tribute Site         | [1-sentence description] | [View →]()  | [Figma]() |
+| Field Guide          | [1-sentence description] | [View →]()  | [Figma]() |
+| Product Landing Page | [1-sentence description] | [View →]()  | [Figma]() |
 
 ---
 
-## 🆘 **Need Help?**
-- **Stuck on setup?** Check the [troubleshooting guides](setup/) in your setup folder.  
-- **Technical issues?** Email your instructor or visit office hours.  
+## Technical Skills Demonstrated
+- Semantic HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`)
+- CSS Layout (Flexbox / Grid)
+- Responsive Design with `@media` queries
+- CSS Custom Properties (variables)
+- CSS Transitions for interaction
+- Version Control with Git & GitHub
+
+---
+
+## Archive
+- [Course Log](archive/course-log.md) — Detailed weekly documentation
+- [Learning Log](learning-log.html) — Index of all exercises and projects
+
+---
+
+## Credits & Citations
+
+### Assets
+- [List any images, icons, or assets you didn't create]
+
+### Tutorials & Resources
+- [Any tutorials or Stack Overflow threads that helped]
+
+### AI Assistance
+- [If used: "Used Claude for debugging CSS grid in Week 6"]
+- [If none: "No AI assistance used"]
+
+---
+
+## Reflection
+→ [Read Full Reflection on Portfolio Site](index.html)
+
+---
+
+© 2026 Zahara Acevedo. Built for DESN368 at Eastern Washington University.
