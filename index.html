@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zo0py — Zahara Acevedo | Portfolio</title>
+
+  <!-- Adobe Fonts (Mezzotint CF + Brillante VF) -->
+  <link rel="stylesheet" href="https://use.typekit.net/xbh8uzj.css">
+
+  <!-- Google Fonts: Athiti (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home">
+
+  <!-- ============================================
+       SHARED SHELL: site header / nav
+       (identical across index, work, reflection)
+  ============================================= -->
+  <header class="site-header">
+    <a href="index.html" class="logo" aria-label="Zo0py home">
+      <!-- reusable star sits behind the wordmark; see .star SVG -->
+      Zo0py
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#who-am-i">Who am i?</a>
+      <a href="work.html">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         HERO
+    ============================================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- TODO: replace placeholder with your illustration (PNG with transparency) -->
+      <div class="hero__art">
+        <img src="images/PLACEHOLDER-hero-illustration.png" alt="" width="900" height="900">
+        <!-- alt left empty: decorative illustration. Add a description if it conveys meaning. -->
+      </div>
+
+      <div class="hero__intro">
+        <p class="hero__year">2026</p>
+        <h1 id="hero-title" class="hero__title">Portfolio</h1>
+        <p class="hero__copy">
+          Whether it's book designs, posters, company and social branding, or
+          website designs, my overall goal is to provide powerful and heavy
+          visual content that speaks louder than words. I believe visual art and
+          design are the most effective means of communication, so I want to be
+          able to create loud designs to give powerful voices to those who might
+          otherwise be denied the opportunity.
+        </p>
+        <div class="hero__actions">
+          <a href="work.html" class="btn btn--solid">Work</a>
+          <a href="#contact" class="btn btn--solid">Contact me!</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WHO I AM
+    ============================================= -->
+    <section id="who-am-i" class="band band--text-left" aria-labelledby="who-title">
+      <div class="band__text">
+        <p>
+          Hi, I'm Zahara Acevedo. I'm a graphic design major at Eastern
+          Washington University, currently layering a foundation in visual
+          communication with studies in animation, UX/UI, and web development. I
+          believe that good design requires both technical rigor and a curious
+          mind, and I'm constantly looking for new ways to bridge the two.
+        </p>
+      </div>
+      <h2 id="who-title" class="band__heading">Who<br>I Am</h2>
+    </section>
+
+    <!-- ============================================
+         WHAT I DO
+    ============================================= -->
+    <section class="band band--text-right" aria-labelledby="what-title">
+      <h2 id="what-title" class="band__heading">What<br>I Do</h2>
+      <div class="band__text">
+        <p>
+          I specialize in high-contrast, maximalist illustration and graphic
+          design. My process is rooted in the early stages of conceptual
+          drafting, where I bridge the gap between raw visual ideas and polished
+          digital execution. I am a detail-oriented designer committed to
+          projects that amplify underrepresented voices and challenge the status
+          quo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SOFTWARE
+    ============================================= -->
+    <section class="software" aria-labelledby="software-title">
+      <h2 id="software-title" class="section-heading section-heading--offwhite">Software</h2>
+      <ul class="software__list" role="list">
+        <!-- TODO: drop in each brand icon (PNG/SVG) and fill the alt text -->
+        <li><img src="images/PLACEHOLDER-icon-illustrator.png" alt="Adobe Illustrator" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-indesign.png" alt="Adobe InDesign" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-photoshop.png" alt="Adobe Photoshop" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-figma.png" alt="Figma" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-canva.png" alt="Canva" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-vscode.png" alt="Visual Studio Code" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-procreate.png" alt="Procreate" width="80" height="80"></li>
+        <li><img src="images/PLACEHOLDER-icon-github.png" alt="GitHub" width="80" height="80"></li>
+      </ul>
+    </section>
+
+    <!-- ============================================
+         SKILLS (Hard / Soft)
+    ============================================= -->
+    <section class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="visually-hidden">Skills</h2>
+      <div class="skills__col">
+        <h3 class="skills__heading">Hard Skills</h3>
+        <ul class="skills__list skills__list--light" role="list">
+          <li>Brand identity designs</li>
+          <li>Typography</li>
+          <li>Layout and composition</li>
+          <li>UX/UI fundamentals</li>
+        </ul>
+      </div>
+      <div class="skills__col">
+        <h3 class="skills__heading">Soft Skills</h3>
+        <ul class="skills__list skills__list--orange" role="list">
+          <li>Giving and Receiving Criticism</li>
+          <li>Communication</li>
+          <li>Time Management</li>
+          <li>Story Telling</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ACHIEVEMENTS
+    ============================================= -->
+    <section class="achievements" aria-labelledby="achievements-title">
+      <h2 id="achievements-title" class="section-heading section-heading--offwhite">Achievements</h2>
+      <div class="achievements__group">
+        <p class="achievements__show">
+          <span class="star star--blue" aria-hidden="true"></span>
+          Columbia Basin College 2024 Annual Juried Student Art Show
+        </p>
+        <ul class="achievements__list" role="list">
+          <li>Deans Award</li>
+          <li>Esvelt Permanent collection award</li>
+          <li>ascbc purchase award</li>
+          <li>3rd place in graphic design</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PROJECTS (card grid — base .card, no description)
+    ============================================= -->
+    <section class="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-heading section-heading--offwhite section-heading--center">Projects</h2>
+      <p class="projects__intro">
+        Curious about my work? Lots of my projects consist of branding design,
+        illustrations and posters, however im always practicing new skills and
+        new forms of media
+      </p>
+
+      <ul class="card-grid" role="list">
+        <li>
+          <a href="work.html" class="card">
+            <span class="card__media">
+              <img src="images/PLACEHOLDER-project-web.png" alt="" width="600" height="700">
+            </span>
+            <span class="card__label">Web Design - Coding</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="card">
+            <span class="card__media">
+              <img src="images/PLACEHOLDER-project-graphic.png" alt="" width="600" height="700">
+            </span>
+            <span class="card__label">Graphic Design</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="card">
+            <span class="card__media">
+              <img src="images/PLACEHOLDER-project-ai.png" alt="" width="600" height="700">
+            </span>
+            <span class="card__label">AI + Design</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="card">
+            <span class="card__media">
+              <img src="images/PLACEHOLDER-project-illustrations.png" alt="" width="600" height="700">
+            </span>
+            <span class="card__label">Illustrations</span>
+          </a>
+        </li>
+        <li class="card-grid__center">
+          <div class="card card--disabled">
+            <span class="card__media">
+              <img src="images/PLACEHOLDER-project-animations.png" alt="" width="600" height="700">
+            </span>
+            <span class="card__label">Animations<br>[coming soon]</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       SHARED SHELL: contact footer
+       (identical across index, work, reflection)
+  ============================================= -->
+  <footer id="contact" class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title" class="contact__title">Lets<br>Work<br>Together!</h2>
+    <ul class="contact__list" role="list">
+      <li>
+        <img src="images/PLACEHOLDER-icon-email.png" alt="Email" width="40" height="40">
+        <a href="mailto:zo0pyyyza12@gmail.com">zo0pyyyza12@gmail.com</a>
+      </li>
+      <li>
+        <img src="images/PLACEHOLDER-icon-instagram.png" alt="Instagram" width="40" height="40">
+        <a href="https://instagram.com/zo0pyy_">@zo0pyy_</a>
+      </li>
+      <li>
+        <img src="images/PLACEHOLDER-icon-linkedin.png" alt="LinkedIn" width="40" height="40">
+        <a href="#">Zahara Acevedo</a>
+      </li>
+    </ul>
+  </footer>
+
+  <div class="colophon">
+    <p>&copy; 2025 Zahara Acevedo. Built for DESN368 at Eastern Washington University.</p>
+    <p>Co-assisted by Claude with coding and debugging. Art direction, content, images by Zahara Acevedo, and app icons from Adobe Stock.</p>
+  </div>
+
+</body>
+</html>
