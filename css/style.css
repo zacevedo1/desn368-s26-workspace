@@ -28,17 +28,17 @@
   --font-body:    "Athiti", sans-serif;                /* body copy */
   --font-script:  "brillante-vf", sans-serif;          /* held in reserve */
 
-  /* --- Type scale (rem-based so it stays flexible) --- */
-  --fs-hero:    clamp(3.5rem, 9vw, 8rem);
-  --fs-band:    clamp(2.5rem, 6vw, 5.5rem);
-  --fs-section: clamp(2.2rem, 5vw, 4rem);
-  --fs-h3:      clamp(1.5rem, 3vw, 2.2rem);
-  --fs-body:    1.0625rem;
-  --fs-small:   0.85rem;
+  /* --- Type scale --- */
+  --fs-hero:    clamp(56px, 9vw, 128px);
+  --fs-band:    clamp(40px, 6vw, 88px);
+  --fs-section: clamp(35px, 5vw, 64px);
+  --fs-h3:      clamp(24px, 3vw, 35px);
+  --fs-body:    20px;
+  --fs-small:   14px;
 
   /* --- Spacing + shape --- */
-  --gap:        1.25rem;
-  --section-y:  clamp(2.5rem, 6vw, 5rem);   /* vertical rhythm between sections */
+  --gap:        20px;
+  --section-y:  clamp(40px, 6vw, 40px);   /* vertical rhythm between sections */
   --wrap:       1200px;                      /* max content width */
   --radius:     18px;
   --radius-lg:  28px;
@@ -104,8 +104,8 @@ a:focus-visible,
    recolors with no image files. Used as bullets + decoration. */
 .star {
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 20px;
+  height: 20px;
   background: var(--coral);
   clip-path: polygon(
     50% 0%, 60% 40%, 100% 50%, 60% 60%,
@@ -124,12 +124,15 @@ a:focus-visible,
   align-items: center;
   justify-content: space-between;
   gap: var(--gap);
-  padding: 1rem clamp(1.25rem, 4vw, 3.5rem);
+  padding: 16px clamp(20px, 4vw, 56px);
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .logo {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(29px, 4vw, 42px);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--offwhite);
@@ -137,33 +140,51 @@ a:focus-visible,
 }
 .site-nav {
   display: flex;
-  gap: clamp(1rem, 3vw, 2.5rem);
+  gap: clamp(16px, 3vw, 40px);
 }
 .site-nav a {
   font-family: var(--font-display);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--offwhite);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(16px, 2vw, 20px);
 }
 .site-nav a:hover { color: var(--coral); }
 
 /* ---- Buttons ---- */
-.btn {
+.btn-1 {
   display: inline-block;
   font-family: var(--font-display);
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  padding: 0.7em 2em;
-  border-radius: 10px;
-  font-size: clamp(1.25rem, 3vw, 2rem);
-}
-.btn--solid {
+  padding: 10px 18px;
+  border-radius: 10px 10px 0px 0px;
+  font-size: clamp(14px, 1.8vw, 22px);
   background: var(--coral);
   color: var(--oxblood);
 }
-.btn--solid:hover { filter: brightness(1.08); }
+.btn-1:hover {
+  color: var(--navy);
+  background: var(--teal);
+}
+
+.btn-2 {
+  display: inline-block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 18px;
+  border-radius: 0px 0px 10px 10px;
+  font-size: clamp(14px, 1.8vw, 22px);
+  background: var(--coral);
+  color: var(--oxblood);
+}
+.btn-2:hover {
+  color: var(--navy);
+  background: var(--teal);
+}
 
 /* ---- Section headings (off-white display, used by several sections) ---- */
 .section-heading {
@@ -204,7 +225,7 @@ a:focus-visible,
   text-transform: uppercase;
   text-align: center;
   font-size: var(--fs-h3);
-  padding: 0.6em 0.3em 0.2em;
+  padding: 18px 9px 6px;
   line-height: 1;
 }
 .card:hover:not(.card--disabled) { filter: brightness(1.06); }
@@ -223,41 +244,67 @@ a:focus-visible,
 .projects {
   max-width: var(--wrap);
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-inline: clamp(20px, 4vw, 40px);
 }
 
 /* ---- HERO ---- */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: clamp(1rem, 4vw, 3rem);
+  grid-template-columns: 62fr 38fr;
+  align-items: stretch;
+  gap: clamp(16px, 4vw, 48px);
   padding-top: var(--section-y);
   padding-bottom: var(--section-y);
+  min-height: clamp(800px, 100vh, 1200px);
 }
-.hero__art img { width: 100%; }
+.hero__art {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+.hero__art img {
+  width: 800px;
+  height: auto;
+  max-width: none;
+  display: block;
+}
+.hero__intro {
+  position: relative;
+  z-index: 2;
+  margin-left: -120px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
 .hero__year {
   font-family: var(--font-display);
   color: var(--orange);
   text-align: right;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-size: clamp(24px, 3vw, 35px);
 }
 .hero__title {
-  color: var(--coral);
-  font-size: var(--fs-hero);
-  text-align: right;
+  line-height: 1;
+}
+.hero__title img {
+  max-width: none;
+  width: 146%;
+  margin-left: -32%;
+  height: auto;
+  display: block;
 }
 .hero__copy {
-  text-align: justify;        /* per your call — justified */
-  hyphens: auto;              /* softens the rivers justification creates */
-  margin-top: 1.25rem;
+  text-align: justify;        
+  hyphens: none;     
+  margin-top: 20px;
 }
 .hero__actions {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: 1.5rem;
-  align-items: stretch;
+  margin-top: auto;
+  padding-top: 24px;
+  align-items: flex-end;
 }
 
 /* ---- BANDS: Who I Am / What I Do ---- */
@@ -266,11 +313,11 @@ a:focus-visible,
   border-radius: var(--radius-lg);
   max-width: var(--wrap);
   margin: var(--gap) auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(24px, 4vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: clamp(1rem, 4vw, 3rem);
+  gap: clamp(16px, 4vw, 48px);
 }
 .band__heading {
   color: var(--orange);
@@ -286,10 +333,10 @@ a:focus-visible,
 .software__list {
   list-style: none;
   padding: 0;
-  margin-top: 1.5rem;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  gap: clamp(12px, 2vw, 24px);
   align-items: center;
 }
 .software__list img {
@@ -303,36 +350,36 @@ a:focus-visible,
   background: var(--teal);
   border-radius: var(--radius-lg);
   margin: var(--section-y) auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(24px, 4vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 5vw, 4rem);
+  gap: clamp(24px, 5vw, 64px);
   color: var(--navy);
 }
 .skills__heading {
   font-size: var(--fs-h3);
   color: var(--offwhite);
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 .skills__list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 14px;
 }
 .skills__list li {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
   font-weight: 600;
   color: var(--navy);
 }
 /* star bullets via ::before, recolored per column */
 .skills__list li::before {
   content: "";
-  width: 1.1em;
-  height: 1.1em;
+  width: 22px;
+  height: 22px;
   flex: none;
   clip-path: polygon(
     50% 0%, 60% 40%, 100% 50%, 60% 60%,
@@ -347,7 +394,7 @@ a:focus-visible,
   background: var(--oxblood);
   border-radius: var(--radius-lg);
   margin: var(--section-y) auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(24px, 4vw, 48px);
 }
 .achievements__show {
   font-family: var(--font-display);
@@ -355,20 +402,20 @@ a:focus-visible,
   font-size: var(--fs-h3);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 1rem 0;
+  gap: 12px;
+  margin: 16px 0;
 }
 .achievements__list {
   list-style: none;
-  padding-left: 1.5rem;
+  padding-left: 24px;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 10px;
 }
 .achievements__list li {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 10px;
   color: var(--teal);
   font-weight: 700;
 }
@@ -387,14 +434,14 @@ a:focus-visible,
 .projects__intro {
   text-align: center;
   max-width: 60ch;
-  margin: 1rem auto 2.5rem;
+  margin: 16px auto 40px;
 }
 .card-grid {
   list-style: none;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(24px, 4vw, 48px);
 }
 .card-grid__center {
   grid-column: 1 / -1;
@@ -405,27 +452,27 @@ a:focus-visible,
 /* ---- CONTACT (shared shell footer) ---- */
 .contact {
   background: var(--black);
-  padding: var(--section-y) clamp(1.25rem, 4vw, 3.5rem);
+  padding: var(--section-y) clamp(20px, 4vw, 56px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 2rem;
+  gap: 32px;
 }
 .contact__title {
   color: var(--orange);
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(48px, 8vw, 112px);
 }
 .contact__list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
 }
 .contact__list li {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 .contact__list a {
   text-decoration: none;
@@ -437,11 +484,11 @@ a:focus-visible,
 .colophon {
   background: var(--black);
   text-align: center;
-  padding: 0 1.25rem 2rem;
+  padding: 0 20px 32px;
   font-size: var(--fs-small);
   color: var(--offwhite);
 }
-.colophon p { margin: 0.4rem auto; max-width: 60ch; }
+.colophon p { margin: 6px auto; max-width: 60ch; }
 
 /* =================================================================
    5. MOTION PREFERENCE (quality floor)

@@ -22,9 +22,8 @@
        (identical across index, work, reflection)
   ============================================= -->
   <header class="site-header">
-    <a href="index.html" class="logo" aria-label="Zo0py home">
-      <!-- reusable star sits behind the wordmark; see .star SVG -->
-      Zo0py
+    <a href="index.html" class="logo">
+      <img src="css/images/word-LogoW.png" alt="Zo0py logo" width="80" height="40">
     </a>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html#who-am-i">Who am i?</a>
@@ -41,13 +40,15 @@
     <section class="hero" aria-labelledby="hero-title">
       <!-- TODO: replace placeholder with your illustration (PNG with transparency) -->
       <div class="hero__art">
-        <img src="images/PLACEHOLDER-hero-illustration.png" alt="" width="900" height="900">
+        <img src="css/images/Primary_Logo_Tran.png" alt="" width="900" height="900">
         <!-- alt left empty: decorative illustration. Add a description if it conveys meaning. -->
       </div>
 
       <div class="hero__intro">
         <p class="hero__year">2026</p>
-        <h1 id="hero-title" class="hero__title">Portfolio</h1>
+        <h1 id="hero-title" class="hero__title">
+          <img src="css/images/Portfolio-logo.svg" alt="Portfolio">
+        </h1>
         <p class="hero__copy">
           Whether it's book designs, posters, company and social branding, or
           website designs, my overall goal is to provide powerful and heavy
@@ -57,8 +58,8 @@
           otherwise be denied the opportunity.
         </p>
         <div class="hero__actions">
-          <a href="work.html" class="btn btn--solid">Work</a>
-          <a href="#contact" class="btn btn--solid">Contact me!</a>
+          <a href="work.html" class="btn-1 btn--solid">Work</a>
+          <a href="#contact" class="btn-2 btn--solid">Contact me!</a>
         </div>
       </div>
     </section>
@@ -76,14 +77,14 @@
           mind, and I'm constantly looking for new ways to bridge the two.
         </p>
       </div>
-      <h2 id="who-title" class="band__heading">Who<br>I Am</h2>
+      <img src="css/images/Who i am.svg" alt="Who I am" width="400" height="400">
     </section>
 
     <!-- ============================================
          WHAT I DO
     ============================================= -->
     <section class="band band--text-right" aria-labelledby="what-title">
-      <h2 id="what-title" class="band__heading">What<br>I Do</h2>
+      <img src="css/images/what i do.svg" alt="What I do" width="400" height="400">
       <div class="band__text">
         <p>
           I specialize in high-contrast, maximalist illustration and graphic
@@ -103,14 +104,14 @@
       <h2 id="software-title" class="section-heading section-heading--offwhite">Software</h2>
       <ul class="software__list" role="list">
         <!-- TODO: drop in each brand icon (PNG/SVG) and fill the alt text -->
-        <li><img src="images/PLACEHOLDER-icon-illustrator.png" alt="Adobe Illustrator" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-indesign.png" alt="Adobe InDesign" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-photoshop.png" alt="Adobe Photoshop" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-figma.png" alt="Figma" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-canva.png" alt="Canva" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-vscode.png" alt="Visual Studio Code" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-procreate.png" alt="Procreate" width="80" height="80"></li>
-        <li><img src="images/PLACEHOLDER-icon-github.png" alt="GitHub" width="80" height="80"></li>
+        <li><img src="css/images/illustrator.svg" alt="Adobe Illustrator" width="80" height="80"></li>
+        <li><img src="css/images/indesign icon.svg" alt="Adobe InDesign" width="80" height="80"></li>
+        <li><img src="css/images/photoshop.svg" alt="Adobe Photoshop" width="80" height="80"></li>
+        <li><img src="css/images/figma icon.svg" alt="Figma" width="80" height="80"></li>
+        <li><img src="css/images/canva icon.svg" alt="Canva" width="80" height="80"></li>
+        <li><img src="css/images/VS CODE icon.svg" alt="Visual Studio Code" width="80" height="80"></li>
+        <li><img src="css/images/procreate icon.svg" alt="Procreate" width="80" height="80"></li>
+        <li><img src="css/images/github icon.svg" alt="GitHub" width="80" height="80"></li>
       </ul>
     </section>
 
@@ -173,7 +174,7 @@
         <li>
           <a href="work.html" class="card">
             <span class="card__media">
-              <img src="images/PLACEHOLDER-project-web.png" alt="" width="600" height="700">
+              <img src="css/images/PLACEHOLDER-project-web.png" alt="" width="600" height="700">
             </span>
             <span class="card__label">Web Design - Coding</span>
           </a>
@@ -181,7 +182,7 @@
         <li>
           <a href="#" class="card">
             <span class="card__media">
-              <img src="images/PLACEHOLDER-project-graphic.png" alt="" width="600" height="700">
+              <img src="css/images/PLACEHOLDER-project-graphic.png" alt="" width="600" height="700">
             </span>
             <span class="card__label">Graphic Design</span>
           </a>
@@ -189,7 +190,7 @@
         <li>
           <a href="#" class="card">
             <span class="card__media">
-              <img src="images/PLACEHOLDER-project-ai.png" alt="" width="600" height="700">
+              <img src="css/images/PLACEHOLDER-project-ai.png" alt="" width="600" height="700">
             </span>
             <span class="card__label">AI + Design</span>
           </a>
@@ -197,7 +198,7 @@
         <li>
           <a href="#" class="card">
             <span class="card__media">
-              <img src="images/PLACEHOLDER-project-illustrations.png" alt="" width="600" height="700">
+              <img src="css/images/PLACEHOLDER-project-illustrations.png" alt="" width="600" height="700">
             </span>
             <span class="card__label">Illustrations</span>
           </a>
@@ -205,7 +206,7 @@
         <li class="card-grid__center">
           <div class="card card--disabled">
             <span class="card__media">
-              <img src="images/PLACEHOLDER-project-animations.png" alt="" width="600" height="700">
+              <img src="css/images/PLACEHOLDER-project-animations.png" alt="" width="600" height="700">
             </span>
             <span class="card__label">Animations<br>[coming soon]</span>
           </div>
@@ -220,18 +221,18 @@
        (identical across index, work, reflection)
   ============================================= -->
   <footer id="contact" class="contact" aria-labelledby="contact-title">
-    <h2 id="contact-title" class="contact__title">Lets<br>Work<br>Together!</h2>
+    <img src="css/images/Lets-work-together!.svg" alt="Let's work together!" width="600" height="400">
     <ul class="contact__list" role="list">
       <li>
-        <img src="images/PLACEHOLDER-icon-email.png" alt="Email" width="40" height="40">
+        <img src="css/images/email.svg" alt="Email" width="40" height="40">
         <a href="mailto:zo0pyyyza12@gmail.com">zo0pyyyza12@gmail.com</a>
       </li>
       <li>
-        <img src="images/PLACEHOLDER-icon-instagram.png" alt="Instagram" width="40" height="40">
+        <img src="css/images/insta.svg" alt="Instagram" width="40" height="40">
         <a href="https://instagram.com/zo0pyy_">@zo0pyy_</a>
       </li>
       <li>
-        <img src="images/PLACEHOLDER-icon-linkedin.png" alt="LinkedIn" width="40" height="40">
+        <img src="css/images/linkedin-icon.svg" alt="LinkedIn" width="40" height="40">
         <a href="#">Zahara Acevedo</a>
       </li>
     </ul>
