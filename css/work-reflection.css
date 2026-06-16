@@ -1,0 +1,308 @@
+/* =================================================================
+   ZO0PY PORTFOLIO — WORK + REFLECTION stylesheet
+   Author: Zahara Acevedo  |  DESN 368 Code + Design | Assisted by Claude Code
+   -----------------------------------------------------------------
+   STANDALONE: self-contained, shares nothing with the home page's
+   style.css. Edit freely without affecting index.html.
+   Foundation (tokens, shell, footer, buttons) is COPIED FROM your
+   home page so all three pages stay visually consistent.
+
+   Used by: work.html  AND  reflection.html
+   ================================================================= */
+
+/* =================================================================
+   1. DESIGN TOKENS  (copied from your home page)
+   ================================================================= */
+:root {
+  --navy:     #25283D;
+  --teal:     #3B8EA5;
+  --orange:   #AF3800;
+  --coral:    #FF9B71;
+  --offwhite: #E0E2DB;
+  --black:    #000000;
+  --oxblood:  #3A0A03;
+
+  --font-display: "mezzotint-cf", sans-serif;
+  --font-body:    "Athiti", sans-serif;
+  --font-script:  "brillante-vf", sans-serif;
+
+  --fs-hero:    clamp(56px, 9vw, 128px);
+  --fs-band:    clamp(40px, 6vw, 88px);
+  --fs-section: clamp(35px, 5vw, 64px);
+  --fs-h3:      clamp(24px, 3vw, 35px);
+  --fs-body:    20px;
+  --fs-small:   14px;
+
+  --gap:        20px;
+  --section-y:  clamp(40px, 6vw, 40px);
+  --wrap:       1200px;
+  --radius:     18px;
+  --radius-lg:  28px;
+}
+
+/* =================================================================
+   2. RESET + BASE  (copied from home)
+   ================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+body {
+  background: var(--navy);
+  color: var(--offwhite);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+a:focus-visible, .btn-pair:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+/* =================================================================
+   3. SHELL: header / nav  (copied from home, incl. sticky)
+   ================================================================= */
+.site-header {
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 16px clamp(20px, 4vw, 56px);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: clamp(29px, 4vw, 42px);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--offwhite);
+  letter-spacing: 0.02em;
+}
+.site-nav { display: flex; gap: clamp(16px, 3vw, 40px); }
+.site-nav a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--offwhite);
+  font-size: clamp(16px, 2vw, 20px);
+}
+.site-nav a:hover { color: var(--coral); }
+
+/* =================================================================
+   4. BUTTONS
+   ================================================================= */
+.btn-pair {
+  display: inline-block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding: 20px 18px;
+  border-radius: 10px;
+  font-size: clamp(14px, 2.5vw, 30px);
+  min-width: 14rem;
+}
+.btn-pair--coral { background: var(--coral); color: var(--orange); }
+.btn-pair--teal  { background: var(--teal);  color: var(--offwhite); }
+.btn-pair:hover  { color: var(--navy); background: var(--teal); }
+.btn-pair--teal:hover { background: var(--coral); color: var(--orange); }
+
+.cat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 32px);
+  margin: 40px 0;
+}
+
+/* =================================================================
+   5. CARD  (copied from home) + --detailed modifier
+   ================================================================= */
+.card {
+  display: block;
+  background: var(--orange);
+  border-radius: var(--radius-lg);
+  padding: 14px 22px 22px 14px;
+  text-decoration: none;
+  color: var(--offwhite);
+  height: 100%;
+}
+.card__media {
+  display: block;
+  background: var(--offwhite);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card__media img { width: 100%; aspect-ratio: 6 / 7; object-fit: cover; }
+.card__label {
+  display: block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: var(--fs-h3);
+  padding: 18px 9px 6px;
+  line-height: 1;
+}
+.card:hover:not(.card--disabled) { filter: brightness(1.06); }
+.card--disabled { cursor: default; }
+
+/* --detailed: adds the description body under the image */
+.card--detailed .card__body { display: block; padding: 12px 8px 4px; }
+.card--detailed .card__label { text-align: center; padding-bottom: 8px; }
+.card__desc {
+  display: block;
+  font-family: var(--font-body);
+  text-transform: none;
+  text-align: center;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--offwhite);
+}
+
+/* =================================================================
+   6. PAGE TITLE
+   ================================================================= */
+.page-title, .category, .reflection {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+}
+.page-title { padding-top: var(--section-y); padding-bottom: 16px; }
+.page-title__main { color: var(--coral); font-size: var(--fs-hero); }
+.page-title__sub {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--coral);
+  font-size: var(--fs-section);
+  text-align: center;
+  margin-top: -8px;
+}
+.page-title--center { text-align: center; }
+.page-title--center .page-title__main { text-align: center; }
+
+/* =================================================================
+   7. WORK PAGE
+   ================================================================= */
+.cat-heading {
+  color: var(--orange);
+  font-size: var(--fs-section);
+  border-left: 8px solid var(--orange);
+  padding-left: 16px;
+  margin-top: var(--section-y);
+}
+.cat-intro {
+  color: var(--teal);
+  font-weight: 600;
+  margin: 16px 0 40px;
+  max-width: 60ch;
+}
+.card-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+
+/* =================================================================
+   8. REFLECTION PAGE
+   ================================================================= */
+.reflection { padding-top: 16px; }
+.qa { margin-bottom: var(--section-y); }
+.qa__q {
+  color: var(--coral);
+  font-size: var(--fs-h3);
+  border-left: 8px solid var(--orange);
+  padding-left: 16px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.qa__a { max-width: 70ch; }
+.qa__figure { margin: 24px 0 0; max-width: 640px; }
+.qa__figure figcaption {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--coral);
+  font-size: 15px;
+  text-align: center;
+  background: var(--navy);
+  border: 2px solid var(--coral);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 8px;
+}
+.qa__figure img { width: 100%; border: 2px solid var(--coral); border-radius: 0 0 12px 12px; }
+
+/* =================================================================
+   9. FOOTER
+   ================================================================= */
+.contact {
+  background: var(--black);
+  padding: var(--section-y) clamp(20px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+}
+.contact__logo {
+  width: 140%;
+  height: auto;
+  max-width: none;
+  margin-top: 68px;
+  margin-left: 100px;
+}
+.contact__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 74px;
+  margin-bottom: 70px;
+}
+.contact__list img { width: 35px; height: auto; }
+.contact__list li { display: flex; align-items: center; gap: 12px; }
+.contact__list a { text-decoration: none; color: var(--offwhite); }
+.contact__list a:hover { color: var(--coral); }
+
+.colophon {
+  background: var(--black);
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  font-size: var(--fs-small);
+  color: var(--offwhite);
+}
+.colophon p {
+  margin: 0 auto;
+  max-width: 95ch;
+  padding-top: 10px;
+  opacity: 0.6;
+}
+
+/* =================================================================
+   10. MOTION PREFERENCE
+   ================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
