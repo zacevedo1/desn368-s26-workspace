@@ -1,6 +1,6 @@
 /* =================================================================
    ZO0PY PORTFOLIO — stylesheet
-   Author: Zahara Acevedo  |  DESN 368 Code + Design
+   Author: Zahara Acevedo  |  DESN 368 Code + Design | Assisted by Claude Code
    -----------------------------------------------------------------
    Organized: 1) Tokens  2) Reset/base  3) Reusable (shell, buttons,
    stars, cards, headings)  4) Home page sections
@@ -99,9 +99,6 @@ a:focus-visible,
    3. REUSABLE COMPONENTS
    ================================================================= */
 
-/* ---- Reusable STAR (one SVG-style shape via CSS, recolored by class) ----
-   Built as a 4-point concave star using clip-path so it scales and
-   recolors with no image files. Used as bullets + decoration. */
 .star {
   display: inline-block;
   width: 20px;
@@ -158,15 +155,11 @@ a:focus-visible,
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  padding: 10px 18px;
+  padding: 20px 18px;
   border-radius: 10px 10px 0px 0px;
-  font-size: clamp(14px, 1.8vw, 22px);
+  font-size: clamp(14px, 2.5vw, 30px);
   background: var(--coral);
-  color: var(--oxblood);
-}
-.btn-1:hover {
-  color: var(--navy);
-  background: var(--teal);
+  color: var(--orange);
 }
 
 .btn-2 {
@@ -175,13 +168,13 @@ a:focus-visible,
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  padding: 10px 18px;
+  padding: 20px 18px;
   border-radius: 0px 0px 10px 10px;
-  font-size: clamp(14px, 1.8vw, 22px);
+  font-size: clamp(14px, 2.5vw, 30px);
   background: var(--coral);
-  color: var(--oxblood);
+  color: var(--orange);
 }
-.btn-2:hover {
+.btn-2:hover, .btn-1:hover {
   color: var(--navy);
   background: var(--teal);
 }
@@ -215,7 +208,8 @@ a:focus-visible,
   overflow: hidden;
 }
 .card__media img {
-  width: 100%;
+  width: 120%;
+  height: 300px;
   aspect-ratio: 6 / 7;
   object-fit: cover;
 }
@@ -227,6 +221,13 @@ a:focus-visible,
   font-size: var(--fs-h3);
   padding: 18px 9px 6px;
   line-height: 1;
+}
+.card__label--sm {
+  font-size: 25px;
+}
+.card__label--xs {
+  font-size: 25px;
+  padding-bottom: 61px;
 }
 .card:hover:not(.card--disabled) { filter: brightness(1.06); }
 .card--disabled { cursor: default; }
@@ -256,6 +257,10 @@ a:focus-visible,
   padding-top: var(--section-y);
   padding-bottom: var(--section-y);
   min-height: clamp(800px, 100vh, 1200px);
+  margin-top: -76px;
+  margin-bottom: -59px;
+  background: linear-gradient(to bottom, #000000 10%, #25283D );
+
 }
 .hero__art {
   display: flex;
@@ -264,10 +269,11 @@ a:focus-visible,
   z-index: 1;
 }
 .hero__art img {
-  width: 800px;
+  width: 900px;
   height: auto;
   max-width: none;
   display: block;
+  margin-left: -81px;
 }
 .hero__intro {
   position: relative;
@@ -289,29 +295,32 @@ a:focus-visible,
 .hero__title img {
   max-width: none;
   width: 146%;
-  margin-left: -32%;
+  margin-left: -35%;
   height: auto;
   display: block;
 }
 .hero__copy {
-  text-align: justify;        
-  hyphens: none;     
+  font-size: 20px;
+  font-weight: 600;
+  text-align: justify;
+  hyphens: none;
   margin-top: 20px;
+  margin-left: -56px;
 }
 .hero__actions {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: auto;
+  margin-top: 41px;
   padding-top: 24px;
-  align-items: flex-end;
+  margin-right: 31px;
 }
 
 /* ---- BANDS: Who I Am / What I Do ---- */
 .band {
   background: var(--oxblood);
   border-radius: var(--radius-lg);
-  max-width: var(--wrap);
+  max-width: 1170px;
   margin: var(--gap) auto;
   padding: clamp(24px, 4vw, 48px);
   display: grid;
@@ -327,16 +336,23 @@ a:focus-visible,
 .band--text-left  .band__heading { text-align: right; }
 /* keep reading order natural; visual order set per variant */
 .band--text-right .band__text { order: 2; }
+.band__text p {
+  font-size: 21px;
+  font-weight: 700;
+  text-align: justify;
+  hyphens: none;
+  word-spacing: -2px;
+}
 
 /* ---- SOFTWARE ---- */
 .software { padding-top: var(--section-y); }
 .software__list {
   list-style: none;
   padding: 0;
-  margin-top: 24px;
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(12px, 2vw, 24px);
+  gap: 40px;
   align-items: center;
 }
 .software__list img {
@@ -347,6 +363,7 @@ a:focus-visible,
 
 /* ---- SKILLS panel ---- */
 .skills {
+  max-width: 1170px;
   background: var(--teal);
   border-radius: var(--radius-lg);
   margin: var(--section-y) auto;
@@ -391,6 +408,7 @@ a:focus-visible,
 
 /* ---- ACHIEVEMENTS ---- */
 .achievements {
+  max-width: 1170px;
   background: var(--oxblood);
   border-radius: var(--radius-lg);
   margin: var(--section-y) auto;
@@ -438,10 +456,27 @@ a:focus-visible,
 }
 .card-grid {
   list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(24px, 4vw, 48px);
+  padding: 0 0 47px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--coral) var(--oxblood);
+}
+.card-grid li {
+  flex: 0 0 280px;
+}
+.card-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.card-grid::-webkit-scrollbar-track {
+  background: var(--oxblood);
+  border-radius: 10px;
+}
+.card-grid::-webkit-scrollbar-thumb {
+  background: var(--coral);
+  border-radius: 10px;
 }
 .card-grid__center {
   grid-column: 1 / -1;
@@ -462,12 +497,27 @@ a:focus-visible,
   color: var(--orange);
   font-size: clamp(48px, 8vw, 112px);
 }
+
+.contact__logo {
+  width: 140%;
+  height: auto;
+  max-width: none;
+  margin-top: 68px;
+  margin-left: 100px;
+}
 .contact__list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 25px;
+  margin-left: 74px;
+  margin-bottom: 70px;
+}
+
+.contact__list img {
+  width: 35px;
+  height: auto;
 }
 .contact__list li {
   display: flex;
@@ -484,11 +534,16 @@ a:focus-visible,
 .colophon {
   background: var(--black);
   text-align: center;
-  padding: 0 20px 32px;
+  padding-top: 20px;
+  padding-bottom: 50px;
   font-size: var(--fs-small);
   color: var(--offwhite);
 }
-.colophon p { margin: 6px auto; max-width: 60ch; }
+.colophon p { 
+  margin: 0px auto; max-width: 95ch;
+  padding-top: 10px; 
+  opacity: 0.6;
+}
 
 /* =================================================================
    5. MOTION PREFERENCE (quality floor)
