@@ -68,7 +68,10 @@ img {
   height: auto;
 }
 
-a { color: inherit; }
+a:link    { color: inherit; }
+a:visited { color: inherit; }
+a:hover   { color: var(--coral); }
+a:active  { color: var(--orange); }
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -229,7 +232,7 @@ a:focus-visible,
   font-size: 25px;
   padding-bottom: 61px;
 }
-.card:hover:not(.card--disabled) { filter: brightness(1.06); }
+.card:hover:not(.card--disabled) { filter: brightness(1.06); color: var(--offwhite); }
 .card--disabled { cursor: default; }
 
 /* =================================================================
