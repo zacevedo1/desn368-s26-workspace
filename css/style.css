@@ -39,7 +39,7 @@
   /* --- Spacing + shape --- */
   --gap:        20px;
   --section-y:  clamp(40px, 6vw, 40px);   /* vertical rhythm between sections */
-  --wrap:       1200px;                      /* max content width */
+  --wrap:       1400px;                      /* max content width */
   --radius:     18px;
   --radius-lg:  28px;
 }
@@ -294,8 +294,8 @@ a:focus-visible,
 }
 .hero__title img {
   max-width: none;
-  width: 146%;
-  margin-left: -35%;
+  width: 140%;
+  margin-left: -34%;
   height: auto;
   display: block;
 }
@@ -310,7 +310,7 @@ a:focus-visible,
 .hero__actions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
   margin-top: 41px;
   padding-top: 24px;
   margin-right: 31px;
@@ -345,7 +345,10 @@ a:focus-visible,
 }
 
 /* ---- SOFTWARE ---- */
-.software { padding-top: var(--section-y); }
+.software { 
+  padding-top: var(--section-y); 
+  margin-left: 62px;
+}
 .software__list {
   list-style: none;
   padding: 0;
@@ -390,6 +393,7 @@ a:focus-visible,
   align-items: center;
   gap: 12px;
   font-weight: 600;
+  font-size: 18px;
   color: var(--navy);
 }
 /* star bullets via ::before, recolored per column */
@@ -454,29 +458,42 @@ a:focus-visible,
   max-width: 60ch;
   margin: 16px auto 40px;
 }
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.carousel__btn {
+  flex-shrink: 0;
+  background: var(--coral);
+  color: var(--orange);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+.carousel__btn:hover { background: var(--orange); color: var(--coral); }
+
 .card-grid {
   list-style: none;
-  padding: 0 0 47px 0;
+  padding: 0;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 24px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--coral) var(--oxblood);
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
+.card-grid::-webkit-scrollbar { display: none; }
 .card-grid li {
   flex: 0 0 280px;
-}
-.card-grid::-webkit-scrollbar {
-  height: 8px;
-}
-.card-grid::-webkit-scrollbar-track {
-  background: var(--oxblood);
-  border-radius: 10px;
-}
-.card-grid::-webkit-scrollbar-thumb {
-  background: var(--coral);
-  border-radius: 10px;
+  scroll-snap-align: start;
 }
 .card-grid__center {
   grid-column: 1 / -1;
@@ -550,4 +567,179 @@ a:focus-visible,
    ================================================================= */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
+}
+
+/* =================================================================
+   6. LARGE SCREENS (1400px and above)
+   ================================================================= */
+@media (min-width: 1400px) {
+
+}
+
+/* =================================================================
+   7. TABLET (768px and below)
+   ================================================================= */
+@media (max-width: 768px) {
+  .hero {
+    min-height: unset;
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 16px;
+  }
+  .hero__art img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .hero__intro {
+    margin-left: 0;
+  }
+  .hero__title img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .hero__copy {
+    margin-left: 0;
+    font-size: 16px;
+  }
+  .hero__actions {
+    margin-right: 0;
+  }
+  .contact__logo {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .contact__list {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* =================================================================
+   8. MOBILE (650px and below)
+   ================================================================= */
+
+
+@media (max-width: 650px) {
+
+  
+  /* ============ HERO =============== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: unset;
+    margin-top: 0;
+    margin-bottom: 0
+    padding: 24px 20px 40px;
+    text-align: center;
+  }
+
+  section.hero { padding-bottom: 100px; }
+  .hero__art {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero__art img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .hero__intro {
+    margin-left: 0;
+    padding-top: 24px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero__title {
+    order: 1;
+  }
+  .hero__year {
+    text-align: center;
+    order: 2;
+  }
+  .hero__title img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: -66px;
+  }
+  .hero__copy {
+    margin-left: 0;
+    text-align: center;
+    order: 3;
+  }
+  .hero__actions {
+    width: 100%;
+    margin-right: 0;
+    padding-top: 16px;
+    align-items: stretch;
+    order: 4;
+  }
+  .btn-1, .btn-2 {
+    width: 100%;
+  }
+
+  /* ============ Who am I? | What I do =============== */
+
+  .band {
+    text-align: center;
+    font-size: 10px;
+    width: 90%;
+  }
+  .band__text p {
+    font-size: 12px;
+  }
+  
+  /* ============ skills =============== */
+  .skills {
+    width: 95%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .skills__list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 12px;
+  }
+
+  /* ============ achievements =============== */
+  .achievements {
+    width: 95%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ============ footer =============== */
+  .contact {
+    grid-template-columns: 60fr 40fr;
+    padding: 20px;
+    gap: 16px;
+  }
+  .contact__logo {
+    width: 140%;
+    max-width: none;
+    margin-left: 60px;
+    margin-top: 80px;
+  }
+  .contact__list {
+    margin-left: 0;
+    margin-bottom: 0;
+    gap: 16px;
+  }
+  .contact__list img {
+    width: 28px;
+  }
+  .contact__list a {
+    font-size: 14px;
+  }
 }

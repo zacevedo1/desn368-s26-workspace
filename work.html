@@ -40,14 +40,16 @@
     </section>
 
     <!-- CATEGORY: Design 368 -->
-    <section class="category" aria-labelledby="cat-368">
+    <section id="design-368" class="category" aria-labelledby="cat-368">
       <h2 id="cat-368" class="cat-heading">Design 368: Code + Design 1</h2>
       <p class="cat-intro">
         Projects done during my code + design class in my 3rd quarter, along
         with my original learning log and reflection for this course
       </p>
 
-      <ul class="card-grid card-grid--work" role="list">
+      <div class="carousel">
+        <button class="carousel__btn carousel__btn--prev" aria-label="Previous">&#8592;</button>
+        <ul class="card-grid card-grid--work" role="list">
         <li>
           <a href="week-8/interactive-field-guide/index.html" class="card card--detailed">
             <span class="card__media card__media--preview">
@@ -104,22 +106,24 @@
             </span>
           </a>
         </li>
-      </ul>
+        </ul>
+        <button class="carousel__btn carousel__btn--next" aria-label="Next">&#8594;</button>
+      </div>
 
       <!-- Side-by-side button pair -->
       <div class="cat-actions">
-        <a href="#" class="btn-pair btn-pair--coral">Learning Log</a>
-        <a href="reflection.html" class="btn-pair btn-pair--teal">Reflection</a>
+        <a href="learning-log.html" class="btn-pair btn-pair--coral">Learning Log</a>
+        <a href="reflection.html" class="btn-pair btn-pair--coral">Reflection</a>
       </div>
     </section>
 
     <!-- CATEGORY: Web Development (heading only) -->
-    <section class="category" aria-labelledby="cat-webdev">
+    <section id="web-development" class="category" aria-labelledby="cat-webdev">
       <h2 id="cat-webdev" class="cat-heading">Web Development</h2>
     </section>
 
     <!-- CATEGORY: Personal Projects (heading only) -->
-    <section class="category" aria-labelledby="cat-personal">
+    <section id="personal-projects" class="category" aria-labelledby="cat-personal">
       <h2 id="cat-personal" class="cat-heading">Personal Projects</h2>
     </section>
 
@@ -149,5 +153,15 @@
     <p>Co-assisted by Claude with coding and debugging. Art direction, content, images by Zahara Acevedo, and app icons from Adobe Stock.</p>
   </div>
 
+  <script>
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const grid = carousel.querySelector('.card-grid');
+      const prev = carousel.querySelector('.carousel__btn--prev');
+      const next = carousel.querySelector('.carousel__btn--next');
+      const step = () => grid.querySelector('li').offsetWidth + 24;
+      prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => grid.scrollBy({ left:  step(), behavior: 'smooth' }));
+    });
+  </script>
 </body>
 </html>

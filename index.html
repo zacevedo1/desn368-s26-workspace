@@ -170,7 +170,9 @@
         new forms of media
       </p>
 
-      <ul class="card-grid" role="list">
+      <div class="carousel">
+        <button class="carousel__btn carousel__btn--prev" aria-label="Previous">&#8592;</button>
+        <ul class="card-grid" role="list">
         <li>
           <a href="work.html" class="card">
             <span class="card__media">
@@ -209,7 +211,9 @@
             </span>
             <span class="card__label card__label--xs">Animations<br>[coming soon]</span>
         </li>
-      </ul>
+        </ul>
+        <button class="carousel__btn carousel__btn--next" aria-label="Next">&#8594;</button>
+      </div>
     </section>
 
   </main>
@@ -241,5 +245,15 @@
     <p>Co-assisted by Claude with coding and debugging. Art direction, content, images by Zahara Acevedo, and app icons from Adobe Stock.</p>
   </div>
 
+  <script>
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const grid = carousel.querySelector('.card-grid');
+      const prev = carousel.querySelector('.carousel__btn--prev');
+      const next = carousel.querySelector('.carousel__btn--next');
+      const step = () => grid.querySelector('li').offsetWidth + 24;
+      prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => grid.scrollBy({ left:  step(), behavior: 'smooth' }));
+    });
+  </script>
 </body>
 </html>

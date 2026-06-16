@@ -36,7 +36,7 @@
 
   --gap:        20px;
   --section-y:  clamp(40px, 6vw, 40px);
-  --wrap:       1200px;
+  --wrap:       1400px;
   --radius:     18px;
   --radius-lg:  28px;
 }
@@ -134,6 +134,7 @@ a:focus-visible, .btn-pair:focus-visible {
   flex-wrap: wrap;
   gap: clamp(16px, 3vw, 32px);
   margin: 40px 0;
+  justify-content: center;
 }
 
 /* =================================================================
@@ -142,7 +143,7 @@ a:focus-visible, .btn-pair:focus-visible {
 .card {
   display: block;
   background: var(--orange);
-  border-radius: var(--radius-lg);
+  border-radius: 0px 0px var(--radius-lg) var(--radius-lg);
   padding: 14px 22px 22px 14px;
   text-decoration: none;
   color: var(--offwhite);
@@ -151,8 +152,9 @@ a:focus-visible, .btn-pair:focus-visible {
 .card__media {
   display: block;
   background: var(--offwhite);
-  border-radius: var(--radius);
+  border-radius: 0 0 var(--radius-lg);
   overflow: hidden;
+  margin-top: -70px;
 }
 .card__media img { width: 100%; aspect-ratio: 6 / 7; object-fit: cover; }
 
@@ -160,8 +162,9 @@ a:focus-visible, .btn-pair:focus-visible {
   position: relative;
   height: 300px;
   overflow: hidden;
-  background: transparent;
   transform: translateZ(0);
+  border-radius: var(--radius) var(--radius) 0 0;
+  clip-path: inset(0 round var(--radius) var(--radius) 0 0);
 }
 .card__media--preview iframe {
   position: absolute;
@@ -240,18 +243,58 @@ a:focus-visible, .btn-pair:focus-visible {
   padding-left: 16px;
   margin-top: var(--section-y);
 }
+
+#web-development {
+  margin-bottom: 100px;
+  margin-top: 150px
+} 
+
+#personal-projects {
+  margin-bottom: 100px;
+}
 .cat-intro {
   color: var(--lightblue);
   font-weight: 600;
   margin: 16px 0 40px 30px;
   max-width: 80ch;
 }
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.carousel__btn {
+  flex-shrink: 0;
+  background: var(--coral);
+  color: var(--orange);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+.carousel__btn:hover { background: var(--orange); color: var(--coral); }
+
 .card-grid {
   list-style: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 24px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.card-grid::-webkit-scrollbar { display: none; }
+.card-grid li {
+  flex: 0 0 380px;
+  scroll-snap-align: start;
+  padding-top: 60px;
 }
 
 /* =================================================================
@@ -310,9 +353,22 @@ a:focus-visible, .btn-pair:focus-visible {
   margin-left: 74px;
   margin-bottom: 70px;
 }
-.contact__list img { width: 35px; height: auto; }
-.contact__list li { display: flex; align-items: center; gap: 12px; }
-.contact__list a { text-decoration: none; color: var(--offwhite); }
+.contact__list img {
+   width: 35px; 
+   height: auto;
+   }
+
+.contact__list li {
+   display: flex; 
+   align-items: center; 
+   gap: 12px; 
+  }
+
+.contact__list a { 
+  text-decoration: none; 
+  color: var(--offwhite); 
+}
+
 .contact__list a:hover { color: var(--coral); }
 
 .colophon {
@@ -335,4 +391,47 @@ a:focus-visible, .btn-pair:focus-visible {
    ================================================================= */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
+}
+
+/* =================================================================
+   11. LARGE SCREENS (1400px and above)
+   ================================================================= */
+@media (min-width: 1400px) {
+
+}
+
+/* =================================================================
+   12. TABLET (768px and below)
+   ================================================================= */
+@media (max-width: 768px) {
+
+}
+
+/* =================================================================
+   13. MOBILE (650px and below)
+   ================================================================= */
+@media (max-width: 650px) {
+  /* ============ footer =============== */
+  .contact {
+    grid-template-columns: 60fr 40fr;
+    padding: 20px;
+    gap: 16px;
+  }
+  .contact__logo {
+    width: 140%;
+    max-width: none;
+    margin-left: 60px;
+    margin-top: 80px;
+  }
+  .contact__list {
+    margin-left: 0;
+    margin-bottom: 0;
+    gap: 16px;
+  }
+  .contact__list img {
+    width: 28px;
+  }
+  .contact__list a {
+    font-size: 14px;
+  }
 }
